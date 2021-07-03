@@ -1,0 +1,61 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+#sidebar {
+  position: fixed;
+  height: 100vh;
+  background-color: #f5f5f5;
+  padding-top: 68px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.font {
+  font-family: "Open Sans", sans-serif;
+}
+.App {
+  text-align: center;
+}
+
+.ui.main.container {
+  margin-top: 6em;
+}
+.slide .ui.inverted.vertical.segment {
+  padding-top: 16rem;
+  padding-bottom: 4rem;
+  height: 600px;
+}
+
+.slide .ui.text.container {
+  max-width: 70%;
+}
+
+.slick-dotted.slick-slider {
+  margin-bottom: 0;
+}
+
+.slick-prev.slick-arrow {
+  padding-left: 8rem;
+  padding-right: calc(8rem + 20px);
+  display: inline-block;
+  height: 100%;
+  z-index: 32;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.0001) 100%
+  );
+}
+
+.slick-next.slick-arrow {
+  padding-left: 8rem;
+  padding-right: calc(8rem + 20px);
+  display: inline-block;
+  height: 100%;
+  z-index: 32;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.0001) 100%
+  );
+}

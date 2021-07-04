@@ -12,7 +12,7 @@ export default function Filter() {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filterValues.filterValues);
+  const filters = useSelector((state) => state.filterValues.filterValues);
 
   useEffect(() => {
     let cityService = new CityService();
@@ -25,12 +25,13 @@ export default function Filter() {
 
   const formik = useFormik({
     initialValues: {
-      cityId: filter.cityId,
-      workTypeId: filter.workTypeId,
-      workTimeId: filter.workTimeId,
-      jobPositionId: filter.jobPositionId,
+      cityId: filters.cityId,
+      workTypeId: filters.workTypeId,
+      workTimeId: filters.workTimeId,
+      jobPositionId: filters.jobPositionId,
     },
     onSubmit: (values) => {
+      console.log(values);
       dispatch(addNewFilter(values));
     },
   });
@@ -49,6 +50,7 @@ export default function Filter() {
 
   return (
     <div>
+      {console.log(filters)}
       <Form onSubmit={formik.handleSubmit}>
         <Form.Field
           label="Şehre göre filtrele"
@@ -76,7 +78,8 @@ export default function Filter() {
             />
           ))}
         </div>
-        {console.log(formik.values)}
+        {/* {console.log(formik.values)} */}
+        <Button type="submit">Filtrele</Button>
       </Form>
 
       <Button onClick={() => handleResetFilterValues()}>

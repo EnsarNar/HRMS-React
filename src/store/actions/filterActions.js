@@ -3,9 +3,10 @@ export const ADD_NEW_FILTER = "ADD_NEW_FILTER"
 export const CLEAR_FILTER = "CLEAR_FILTER"
 
 export const addNewFilter = (filter) => {
+    console.log(filter)
     return {
         type: ADD_NEW_FILTER,
-        paylaod: filter
+        payload: filter
     }
 }
 

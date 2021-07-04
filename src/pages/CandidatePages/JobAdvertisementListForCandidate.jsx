@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import JobAdvertisementService from "../../services/jobAdvertisementService";
 import { Button, Card, Grid } from "semantic-ui-react";
-
+import Filter from "../../layout/Filter";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToFavorites } from "../../store/actions/favActions";
+import { useSelector } from "react-redux";
 export default function JobAdvertisementList() {
   const dispatch = useDispatch();
   const [jobAdvertisements, setJobAdvertisements] = useState([]);
-
+  const filters = useSelector((state) => state.filterValues.filterValues);
+  let pageNo = 1;
+  let pageSize = 5; //İleride Düzeltilecek
   useEffect(() => {
     let jobAdvertisementService = new JobAdvertisementService();
     jobAdvertisementService
-      .getJobAdvertisementsWhereActive()
+      .getJobAdvertisementsWhereFiltered(pageNo, pageSize, filters) // filterlı metod yazılacak buraya parametre olarak filters geiçlecek
       .then((result) => setJobAdvertisements(result.data.data));
-  }, []);
+  }, [pageNo, pageSize, filters]);
   const handleAddToFavorites = (advertisement) => {
     dispatch(addToFavorites(advertisement));
     console.log(advertisement);
@@ -54,7 +57,9 @@ export default function JobAdvertisementList() {
           </Card.Group>
         </Grid.Column>
 
-        <Grid.Column width={6} floated="right"></Grid.Column>
+        <Grid.Column width={6} floated="right">
+          <Filter />
+        </Grid.Column>
       </Grid>
     </div>
   );

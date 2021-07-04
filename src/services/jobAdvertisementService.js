@@ -15,6 +15,11 @@ export default class JobAdvertisementService {
     changeIsActiveOfJobAdvertisement(id) {
         return axios.post("http://localhost:8080/api/jobAdvertisement/changeIsActiveOfJobAdvertisement?id=" + id);
     }
-
+    getJobAdvertisementsWhereFiltered(filter, pageNo, pageSize) {
+        return axios.get();
+    }
+    getByFilterWithPages(pageNo, pageSize, filter) {
+        return axios.post(`http://localhost:8080/api/jobAdvertisement/getByFilterWithPages?pageNo=${pageNo}&pageSize=${pageSize}`, filter)
+    }
 
 }

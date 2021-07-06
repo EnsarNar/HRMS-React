@@ -53,10 +53,10 @@ export default function Filter() {
       {console.log(filters)}
       <Form onSubmit={formik.handleSubmit}>
         <Form.Field
-          label="Şehre göre filtrele"
-          value={selectedCity}
           placeholder="Şehre göre filtrele"
+          value={selectedCity}
           onChange={(e) => setSelectedCity(e.target.value)}
+          label="Şehre göre filtrele"
         />
         <div
           style={{ overflowY: "auto", maxHeight: "200px", margin: "10px 10px" }}
@@ -78,6 +78,7 @@ export default function Filter() {
             />
           ))}
         </div>
+
         {/* {console.log(formik.values)} */}
         <Button type="submit">Filtrele</Button>
       </Form>

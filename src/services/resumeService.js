@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAutoCloseDelay } from "react-toastify/dist/utils";
 export default class ResumeService {
 
     getResumes() {
@@ -11,7 +12,10 @@ export default class ResumeService {
         return axios.put("http://localhost:8080/api/resume/addPhoto?id=${id}");
     }
     deleteResume(id) {
-        return axios.delete("http://localhost:8080/api/resume/delete?id=${id}");
+        return axios.delete(`http://localhost:8080/api/resume/delete?id=${id}`);
+    }
+    getResumesByCandidateId(id) {
+        return axios.get(`http://localhost:8080/api/resume/getByCandidateId?id${id}`);
     }
 
 };

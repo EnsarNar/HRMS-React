@@ -5,6 +5,7 @@ import WorkTimeService from "../services/workTimeService";
 import JobPositionService from "../services/jobPositionsService";
 import { Form, Input, Button } from "semantic-ui-react";
 import { useState, useEffect } from "react";
+import KodlamaIoFilter from "../utilities/customFormControls/KodlamaIoFilter";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewFilter, clearFilter } from "../store/actions/filterActions";
@@ -47,18 +48,47 @@ export default function Filter() {
       text: city.cityName,
     })
   );
+  const generalOnChange = (value, field, list) => {
+    formik.setFieldValue(
+      field,
+      list.includes(value)
+        ? [...list.filter((i) => i !== value)]
+        : [...list, value]
+    );
+  };
+  const cityOnChange = (e, value) => {
+    generalOnChange(value, "cityId", formik.values.cityId);
+  };
+
+  // let onChangeForCheckbox = (e, value) => {
+  //   formik.setFieldValue(
+  //     "cityId",
+  //     formik.values.cityId.includes(value)
+  //       ? [...formik.values.cityId.filter((i) => i !== value)]
+  //       : [...formik.values.cityId, value]
+  //   );
+  // };
 
   return (
     <div>
       {console.log(filters)}
       <Form onSubmit={formik.handleSubmit}>
-        <Form.Field
+        <KodlamaIoFilter
           placeholder="Şehre göre filtrele"
           value={selectedCity}
           onChange={(e) => setSelectedCity(e.target.value)}
           label="Şehre göre filtrele"
+          options={cityOptions}
+          onChangeForCheckbox={cityOnChange}
+          list={formik.values.cityId}
         />
-        <div
+        {/* <Form.Field
+          placeholder="Şehre göre filtrele"
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.target.value)}
+          label="Şehre göre filtrele"
+        /> 
+         <div
           style={{ overflowY: "auto", maxHeight: "200px", margin: "10px 10px" }}
         >
           {cityOptions.map((option) => (
@@ -77,7 +107,7 @@ export default function Filter() {
               value={option.value}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* {console.log(formik.values)} */}
         <Button type="submit">Filtrele</Button>

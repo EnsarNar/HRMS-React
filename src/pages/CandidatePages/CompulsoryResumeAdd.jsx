@@ -21,6 +21,7 @@ export default function CompulsoryResumeAdd() {
   return (
     <div>
       <Formik
+        className="main"
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {

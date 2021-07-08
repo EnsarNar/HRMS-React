@@ -15,7 +15,6 @@ function App() {
       <Route path="/employer" component={EmployerDashboard} />
       <Route path="/candidate" component={CandidateDashboard} />
       <Route path="/admin" component={AdminDashboard} />
-
       {/* {window.location.pathname.includes("candidate") && <CandidateDashboard />} */}
 
 

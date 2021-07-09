@@ -1,6 +1,19 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+/* input[type="file" i] {
+  color: white;
+}
+label {
+  background-color: #ebebeb;
+  color: rgb(214, 191, 191);
+  padding: 1rem;
+  outline: none;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+} */
+
 #sidebar {
   position: fixed;
   height: 100vh;

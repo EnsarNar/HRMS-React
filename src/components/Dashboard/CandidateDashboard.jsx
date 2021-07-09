@@ -17,7 +17,7 @@ export default function CandidateDashboard() {
             <CandidateSidebar className="main" />
           </Grid.Column>
           <Grid.Column width={12}>
-            <Container>
+            <Container className="main">
               <Route
                 exact
                 path="/candidate/getAllAdverts"
@@ -29,7 +29,7 @@ export default function CandidateDashboard() {
                 component={JobAdvertisementDetailsForCandidates}
               />
             </Container>
-            <Container className="main">
+            <Container className="main" style={{ paddingRight: "5em" }}>
               <Route
                 exact
                 path="/candidate/addResume/addResumeHead"

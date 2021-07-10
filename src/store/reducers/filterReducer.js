@@ -5,10 +5,10 @@ const initialState = {
 }
 
 export default function filterReducer(state = initialState, { type, payload }) {
-    console.log({
-        ...state,
-        filterValues: payload
-    })
+    // console.log({
+    //     ...state,
+    //     filterValues: payload
+    // })
     switch (type) {
         case ADD_NEW_FILTER:
             return {

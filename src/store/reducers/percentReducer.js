@@ -11,19 +11,18 @@ export default function percentReducer(state = initialValues, { type, payload })
 
     switch (type) {
         case INCRESE_PERCENT:
-            // let advertisement = state.favoriteItems.find(f => f.jobAdvertisement.id === payload.id);
-            let percentValue = state.progressPercent.find(p => p.percent !== 25)
-            if (percentValue) {
+            if (state.progressPercent.percent >= 100) {
                 return {
                     ...state,
-                    progressPercent: [{ percent: 25 }]
+                    progressPercent: { percent: 0 }
                 }
             } else {
                 return {
                     ...state,
-                    progressPercent: [{ percent: state.progressPercent.percent + payload }]
+                    progressPercent: { percent: state.progressPercent.percent + payload }
                 }
             }
+
         default:
             return state;
     }

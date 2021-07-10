@@ -3,9 +3,8 @@ import JobAdvertisementService from "../../services/jobAdvertisementService";
 import { Button, Card, Grid } from "semantic-ui-react";
 import Filter from "../../layout/Filter";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites } from "../../store/actions/favActions";
-import { useSelector } from "react-redux";
 
 export default function JobAdvertisementList() {
   const dispatch = useDispatch();

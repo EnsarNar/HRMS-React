@@ -1,1 +1,1 @@
-export const progressPercent = {};
+export const progressPercent = { percent: 0 };

@@ -71,7 +71,7 @@ export default function Filter() {
 
   return (
     <div>
-      {console.log(filters)}
+      {/* {console.log(filters)} */}
       <Form onSubmit={formik.handleSubmit}>
         <KodlamaIoFilter
           placeholder="Şehre göre filtrele"

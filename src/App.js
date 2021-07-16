@@ -3,18 +3,19 @@ import 'semantic-ui-css/semantic.min.css';
 import EmployerDashboard from "../src/components/Dashboard/EmployerDashboard"
 import CandidateDashboard from "../src/components/Dashboard/CandidateDashboard"
 import AdminDashboard from "../src/components/Dashboard/AdminDashboard"
-
+import HomePage from './pages/HomePage';
 import { Route } from "react-router-dom"
+
 function App() {
-
-
   return (
     <div className="App">
-
       {/* {window.location.pathname.includes("employer") && <EmployerDashboard />}  */}
       <Route path="/employer" component={EmployerDashboard} />
       <Route path="/candidate" component={CandidateDashboard} />
       <Route path="/admin" component={AdminDashboard} />
+      <Route path="/home" component={HomePage} />
+
+
       {/* {window.location.pathname.includes("candidate") && <CandidateDashboard />} */}
 
 

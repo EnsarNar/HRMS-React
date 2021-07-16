@@ -3,7 +3,7 @@ import { Dropdown, Label, Button } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 export default function CandidateCartSummary() {
-  const { favoriteItems } = useSelector((state) => state.favorites);
+  const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
 
   return (
     <div>
@@ -12,7 +12,7 @@ export default function CandidateCartSummary() {
           {/* <Button onClick={() => console.log(favoriteItems)}>tıkla</Button> */}
           {favoriteItems.map((fav) => (
             <Dropdown.Item key={`favsummary${fav.jobAdvertisement.id}`}>
-              <Label>{fav.jobAdvertisement.employerCompanyName}</Label>
+              <Label>{fav.jobAdvertisement.employer.companyName}</Label>
             </Dropdown.Item>
           ))}
 

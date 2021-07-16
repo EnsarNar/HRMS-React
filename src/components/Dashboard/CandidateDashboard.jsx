@@ -7,14 +7,16 @@ import JobAdvertisementListForCandidates from "../../pages/CandidatePages/JobAdv
 import CandidateSidebar from "../Sidebar/CandidateSidebar";
 import JobAdvertisementDetailsForCandidates from "../../pages/CandidatePages/JobAdvertisementDetailsForCandidates";
 import CompulsoryResumeAdd from "../../pages/CandidatePages/CompulsoryResumeAdd";
+import { ToastContainer } from "react-toastify";
 export default function CandidateDashboard() {
   return (
     <div>
       <CandidateNavi />
+      <ToastContainer position="bottom-right" />
       <Grid>
         <Grid.Row>
           <Grid.Column width={4}>
-            <CandidateSidebar className="main" />
+            <CandidateSidebar />
           </Grid.Column>
           <Grid.Column width={12}>
             <Container className="main">

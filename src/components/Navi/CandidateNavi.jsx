@@ -9,7 +9,7 @@ export default function CandidateNavi() {
   return (
     <div>
       <Grid padded>
-        <Menu borderless inverted fluid fixed="top">
+        <Menu borderless inverted fluid fixed="top" size="mini">
           <Menu.Item header>HRMS</Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>

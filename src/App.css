@@ -33,42 +33,40 @@ label {
 .ui.main.container {
   margin-top: 6em;
 }
-.slide .ui.inverted.vertical.segment {
-  padding-top: 16rem;
-  padding-bottom: 4rem;
-  height: 600px;
-}
 
-.slide .ui.text.container {
-  max-width: 70%;
+.homepage {
+  background-image: url(images/HRMS.jpg);
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
-
-.slick-dotted.slick-slider {
-  margin-bottom: 0;
+.contents {
+  width: 100%;
+  position: absolute;
+  top: 25%;
+  transform: translateY(-50%);
+  color: #39586c;
 }
-
-.slick-prev.slick-arrow {
-  padding-left: 8rem;
-  padding-right: calc(8rem + 20px);
-  display: inline-block;
-  height: 100%;
-  z-index: 32;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.0001) 100%
-  );
+.contents h1 {
+  font-size: 70px;
+  margin-top: 80px;
 }
-
-.slick-next.slick-arrow {
-  padding-left: 8rem;
-  padding-right: calc(8rem + 20px);
-  display: inline-block;
-  height: 100%;
-  z-index: 32;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.0001) 100%
-  );
+.contents strong {
+  margin: 20px auto;
+  font-weight: 800px;
+  line-height: 25px;
+}
+.stp-design {
+  margin-right: 5em;
+}
+.ui.steps {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: stretch;
+  box-shadow: none;
+  margin-right: 5em;
+  line-height: 1.14285714em;
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
 }

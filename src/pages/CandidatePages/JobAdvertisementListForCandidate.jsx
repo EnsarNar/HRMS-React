@@ -6,21 +6,29 @@ import {
   Grid,
   Pagination,
   Container,
-  Form,
   Dropdown,
+  Icon,
+  Step,
 } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 import Filter from "../../layout/Filter";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites } from "../../store/actions/favActions";
+import "../../App.css";
+import {
+  addToFavorites,
+  deleteFromFavorites,
+} from "../../store/actions/favActions";
 
 export default function JobAdvertisementList() {
   const dispatch = useDispatch();
+
   const [jobAdvertisements, setJobAdvertisements] = useState([]);
   const [pageSize, setPageSize] = useState(2);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   let filters = useSelector((state) => state.filterValues.filterValues);
+  let favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   // let pageNo = 2;
   // let pageSize = 1;
 
@@ -37,16 +45,26 @@ export default function JobAdvertisementList() {
   //UseEffect changebox degistiginde 2. kez calısmıyor
   const handleAddToFavorites = (advertisement) => {
     dispatch(addToFavorites(advertisement));
-    console.log(advertisement);
+    toast.warning("İlan Yıldızlandı !");
+  };
+  const handleDeleteFromFavorites = (advertisement) => {
+    dispatch(deleteFromFavorites(advertisement));
+    toast.error("İlan Favorilerden Silindi !");
   };
   const handleChangePageSize = (value) => {
-    console.log(value);
+    // console.log(value);
     setPageSize(value);
   };
   const handlePageNo = (value) => {
-    console.log(value);
+    // console.log(value);
     setPageNo(value);
   };
+  const handleFavoriteButton = (id) => {
+    return favoriteItems.find((f) => f.jobAdvertisement.id === id)
+      ? true
+      : false;
+  };
+
   //Pagination
 
   const pageOptions = [
@@ -56,9 +74,31 @@ export default function JobAdvertisementList() {
     { key: "100", text: "100", value: "100" },
     { key: "deneme", text: "2", value: "2" },
   ];
+
   return (
     <div>
-      {/* {console.log(filters)} */}
+      <Step.Group ordered className="stp-design">
+        <Step completed>
+          <Step.Content>
+            <Step.Title>Shipping</Step.Title>
+            <Step.Description>Choose your shipping options</Step.Description>
+          </Step.Content>
+        </Step>
+
+        <Step completed>
+          <Step.Content>
+            <Step.Title>Billing</Step.Title>
+            <Step.Description>Enter billing information</Step.Description>
+          </Step.Content>
+        </Step>
+
+        <Step active>
+          <Step.Content>
+            <Step.Title>Confirm Order</Step.Title>
+          </Step.Content>
+        </Step>
+      </Step.Group>
+
       <Grid container stackable>
         <Grid.Column width={10}>
           <Card.Group style={{ paddingLeft: "6.5em" }}>
@@ -75,18 +115,49 @@ export default function JobAdvertisementList() {
                 </Card.Content>
                 <Card.Content extra>
                   <div className="ui two buttons">
-                    <Link to={`/candidate/getAllAdverts/${advertisement.id}`}>
-                      <Button basic color="green">
-                        Detaylar
-                      </Button>
-                    </Link>
+                    {/* <Link to={`/candidate/getAllAdverts/${advertisement.id}`}>  */}
                     <Button
-                      basic
-                      color="yellow"
-                      onClick={() => handleAddToFavorites(advertisement)}
+                      inverted
+                      color="green"
+                      as={NavLink}
+                      to={`/candidate/getAllAdverts/${advertisement.id}`}
+                      icon
                     >
-                      Yıldızla
+                      İlan Detayını Gör
+                      <Icon name="paper plane" />
                     </Button>
+                    {/* <Button
+                      inverted
+                      color="yellow"
+                      onClick={() => {
+                        handleAddToFavorites(advertisement);
+                       
+                      }}
+                    >
+                      Favorilere Ekle
+                    </Button> */}
+
+                    {handleFavoriteButton(advertisement.id) ? (
+                      <Button
+                        onClick={() => handleDeleteFromFavorites(advertisement)}
+                        color="red"
+                        inverted
+                        icon
+                      >
+                        Favorilerden Kaldır
+                        <Icon name="close" />
+                      </Button>
+                    ) : (
+                      <Button
+                        inverted
+                        color="yellow"
+                        onClick={() => handleAddToFavorites(advertisement)}
+                        icon
+                      >
+                        Favorilere Ekle
+                        <Icon name="check" />
+                      </Button>
+                    )}
                   </div>
                 </Card.Content>
               </Card>
@@ -102,6 +173,7 @@ export default function JobAdvertisementList() {
             onChange={(e, data) => handleChangePageSize(data.value)}
             selection
             placeholder="Adverts per page"
+            style={{ marginTop: "0.6em" }}
           />
         </Grid.Column>
       </Grid>

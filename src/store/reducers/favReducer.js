@@ -13,6 +13,7 @@ export default function favReducer(state = initialState, { type, payload }) {
     switch (type) {
         case ADD_TO_FAVORITES:
             let advertisement = state.favoriteItems.find(f => f.jobAdvertisement.id === payload.id);
+            console.log(advertisement)
             if (advertisement) {
                 console.log("Bu ilan zaten favorilere eklenmiş !");
                 return {

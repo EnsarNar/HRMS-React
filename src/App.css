@@ -57,9 +57,7 @@ label {
   font-weight: 800px;
   line-height: 25px;
 }
-.stp-design {
-  margin-right: 5em;
-}
+
 .ui.steps {
   display: inline-flex;
   flex-direction: row;
@@ -69,4 +67,8 @@ label {
   line-height: 1.14285714em;
   border-radius: 0.28571429rem;
   border: 1px solid rgba(34, 36, 38, 0.15);
+}
+.stp-container-design {
+  margin-bottom: 2em;
+  margin-right: 3em;
 }

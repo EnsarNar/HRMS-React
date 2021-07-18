@@ -23,6 +23,7 @@ export default function HomePage() {
           </Grid>
         </div>
       </div>
+      Footer
     </div>
   );
 }

@@ -8,11 +8,12 @@ import CandidateSidebar from "../Sidebar/CandidateSidebar";
 import JobAdvertisementDetailsForCandidates from "../../pages/CandidatePages/JobAdvertisementDetailsForCandidates";
 import CompulsoryResumeAdd from "../../pages/CandidatePages/CompulsoryResumeAdd";
 import { ToastContainer } from "react-toastify";
+import ResumeListForCandidates from "../../pages/CandidatePages/ResumeListForCandidates";
 export default function CandidateDashboard() {
   return (
     <div>
       <CandidateNavi />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-right" autoClose={1000} />
       <Grid>
         <Grid.Row>
           <Grid.Column width={4}>
@@ -36,6 +37,11 @@ export default function CandidateDashboard() {
                 exact
                 path="/candidate/addResume/addResumeHead"
                 component={CompulsoryResumeAdd}
+              />
+              <Route
+                exact
+                path="/candidate/myResumes"
+                component={ResumeListForCandidates}
               />
             </Container>
           </Grid.Column>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAutoCloseDelay } from "react-toastify/dist/utils";
+
 export default class ResumeService {
 
     getResumes() {

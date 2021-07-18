@@ -5,6 +5,7 @@ import CandidateDashboard from "../src/components/Dashboard/CandidateDashboard"
 import AdminDashboard from "../src/components/Dashboard/AdminDashboard"
 import HomePage from './pages/HomePage';
 import { Route } from "react-router-dom"
+import AccordionTest from './pages/AccordionTest';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Route path="/employer" component={EmployerDashboard} />
       <Route path="/candidate" component={CandidateDashboard} />
       <Route path="/admin" component={AdminDashboard} />
-      <Route path="/home" component={HomePage} />
+      {/* <Route exact path="/home" component={HomePage} /> */}
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/accordion" component={AccordionTest} />
 
 
       {/* {window.location.pathname.includes("candidate") && <CandidateDashboard />} */}

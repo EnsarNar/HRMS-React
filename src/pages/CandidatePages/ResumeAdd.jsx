@@ -13,19 +13,16 @@ import {
 export default function ResumeAdd() {
   return (
     <div>
-      <Container className="main">
+      <div className="main" style={{ marginRight: "4em" }}>
         <Segment vertical>
           <Grid stackable className="main">
             <Grid.Column width={10}>
               <Header as="h1">
-                First featurette heading.{" "}
-                <span className="sub">It'll blow your mind.</span>
+                Hızlı Bir Şekilde İş mi Bulmak İstiyorsun ? O zaman dinle !
               </Header>
               <p className="font" style={{ fontSize: "1.5em" }}>
-                Donec ullamcorper nulla non metus auctor fringilla. Vestibulum
-                id ligula porta felis euismod semper. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
-                ac cursus commodo.
+                Birçok aday arasından sıyrılıp öne çıkmak için etkili bir CV
+                hazırlaman gerekiyor. Ne duruyorsun o zaman ? Hemen Başla !
               </p>
             </Grid.Column>
             <Grid.Column width={6}>
@@ -39,14 +36,11 @@ export default function ResumeAdd() {
               <Image src="https://nimbleinfosys.com/img/products/hrms/hrm_banner.png" />
             </Grid.Column>
             <Grid.Column width={10}>
-              <Header as="h1">
-                Oh yeah, <span className="sub">it's that good.</span>
-              </Header>
+              <Header as="h1">Etkili Bir CV Nasıl mı Hazırlanır ?</Header>
               <p className="font" style={{ fontSize: "1.5em" }}>
-                Donec ullamcorper nulla non metus auctor fringilla. Vestibulum
-                id ligula porta felis euismod semper. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
-                ac cursus commodo.
+                Etkili bir CV hazırlamak için yapman gereken tek şey gerçekçi
+                olmak ve eksiksiz bir şekilde bilgileri doldurmak. Üstelik merak
+                etme, CV hazırlayabilmen için sana hazır bir ortam sunuyoruz.
               </p>
             </Grid.Column>
           </Grid>
@@ -61,7 +55,7 @@ export default function ResumeAdd() {
             Hemen Başla !
           </Button>
         </Container>
-      </Container>
+      </div>
     </div>
   );
 }

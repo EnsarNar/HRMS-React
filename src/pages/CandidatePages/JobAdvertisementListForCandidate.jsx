@@ -9,6 +9,8 @@ import {
   Dropdown,
   Icon,
   Step,
+  Divider,
+  Segment,
 } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import Filter from "../../layout/Filter";
@@ -77,27 +79,26 @@ export default function JobAdvertisementList() {
 
   return (
     <div>
-      <Step.Group ordered className="stp-design">
-        <Step completed>
-          <Step.Content>
-            <Step.Title>Shipping</Step.Title>
-            <Step.Description>Choose your shipping options</Step.Description>
-          </Step.Content>
-        </Step>
+      {console.log(jobAdvertisements)}
+      <div className="stp-container-design">
+        <Step.Group attached="top">
+          <Step>
+            <Icon name=" clipboard list" />
+            <Step.Content>
+              <Step.Title>{totalPages} Tane Sayfa Getirildi</Step.Title>
+            </Step.Content>
+          </Step>
 
-        <Step completed>
-          <Step.Content>
-            <Step.Title>Billing</Step.Title>
-            <Step.Description>Enter billing information</Step.Description>
-          </Step.Content>
-        </Step>
-
-        <Step active>
-          <Step.Content>
-            <Step.Title>Confirm Order</Step.Title>
-          </Step.Content>
-        </Step>
-      </Step.Group>
+          <Step>
+            <Icon name="clipboard list" />
+            <Step.Content>
+              <Step.Title>
+                tek sayfada {pageSize} tane ilan getirildi
+              </Step.Title>
+            </Step.Content>
+          </Step>
+        </Step.Group>
+      </div>
 
       <Grid container stackable>
         <Grid.Column width={10}>
@@ -166,15 +167,18 @@ export default function JobAdvertisementList() {
         </Grid.Column>
 
         <Grid.Column width={6} floated="right">
-          <Filter />
+          <Segment>
+            <Dropdown
+              text="Adverts Per Page"
+              options={pageOptions}
+              onChange={(e, data) => handleChangePageSize(data.value)}
+              selection
+              style={{ marginBottom: "0.6em" }}
+            />
+          </Segment>
 
-          <Dropdown
-            options={pageOptions}
-            onChange={(e, data) => handleChangePageSize(data.value)}
-            selection
-            placeholder="Adverts per page"
-            style={{ marginTop: "0.6em" }}
-          />
+          <Divider />
+          <Filter />
         </Grid.Column>
       </Grid>
       <Container style={{ paddingRight: "20em" }}>

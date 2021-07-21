@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ResumeExperienceService from "../../../services/resumeExperienceService";
 import { Grid, Segment, Label, Divider } from "semantic-ui-react";
-import ResumEducationService from "../../../services/resumeEducationService";
-export default function ResumeEducationList({ id }) {
-  const [educations, setEducations] = useState([]);
+export default function ResumeExperienceList() {
+  const [experiences, setExperiences] = useState([]);
   useEffect(() => {
-    let resumeEducationService = new ResumEducationService();
-    resumeEducationService
-      .getAllByResumeId(id)
-      .then((result) => setEducations(result.data.data))
+    let resumeExperienceService = new ResumeExperienceService();
+    resumeExperienceService
+      .getAllByResumeId(13)
+      .then((result) => setExperiences(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
   return (
@@ -16,37 +16,37 @@ export default function ResumeEducationList({ id }) {
         <Grid.Row>
           <Grid.Column textAlign="center">
             <Divider />
-            <h3>Eğitim Bilgileri</h3>
+            <h3>İş Tecübeleri</h3>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      {educations.map((education) => (
-        <Grid columns="equal" key={education.id}>
+      {experiences.map((experience) => (
+        <Grid columns="equal" key={experience.id}>
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment padded>
-                <Label attached="top left">Okul</Label>
-                {education.schoolName}
+                <Label attached="top left">Şirket</Label>
+                {experience.companyName}
               </Segment>
             </Grid.Column>
             <Grid.Column textAlign="center">
               <Segment padded>
-                <Label attached="top left">Bölüm</Label>
-                {education.departmentName}
+                <Label attached="top left">Pozisyon</Label>
+                {experience.position}
               </Segment>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment padded>
-                <Label attached="top left">Okula Başlama Tarihi</Label>
-                {education.startingDate}
+                <Label attached="top left">İşe Başlangıç Tarihi</Label>
+                {experience.startDate}
               </Segment>
             </Grid.Column>
             <Grid.Column textAlign="center">
               <Segment padded>
-                <Label attached="top left">Mezuniyet Tarihi</Label>
-                {education.graduateDate}
+                <Label attached="top left">İşten Ayrılma Tarihi</Label>
+                {experience.endDate}
               </Segment>
             </Grid.Column>
           </Grid.Row>

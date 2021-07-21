@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import ResumeService from "../../services/resumeService";
+import ResumeEducationList from "./Resume/ResumeEducationList";
 import {
   Button,
   Image,
@@ -63,7 +64,8 @@ export default function SingleResumeForCandidate() {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-            {resume.resumeEducation.map((education) => (
+            <ResumeEducationList id={resume.id} />
+            {/* {resume.resumeEducation.map((education) => (
               <Grid columns="equal" key={education.id}>
                 <Grid.Row>
                   <Grid.Column textAlign="center">
@@ -95,6 +97,7 @@ export default function SingleResumeForCandidate() {
                 </Grid.Row>
               </Grid>
             ))}
+
             <Grid>
               <Grid.Row>
                 <Popup
@@ -108,7 +111,7 @@ export default function SingleResumeForCandidate() {
                   }
                 />
               </Grid.Row>
-            </Grid>
+            </Grid> */}
           </ModalContent>
           <ModalContent>
             <Grid columns="equal" divided>

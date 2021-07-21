@@ -35,6 +35,7 @@ export default function SingleResumeForCandidate() {
           onOpen={() => setOpen(true)}
           open={open}
           trigger={<Button>Tıkla</Button>}
+          key={resume.id}
         >
           <Modal.Header>Özgeçmiş</Modal.Header>
 

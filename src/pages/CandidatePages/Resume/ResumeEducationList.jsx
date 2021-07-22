@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  Segment,
-  Label,
-  Divider,
-  Icon,
-  Popup,
-  Button,
-} from "semantic-ui-react";
+import { Grid, Segment, Label, Divider, Icon, Popup } from "semantic-ui-react";
 import ResumEducationService from "../../../services/resumeEducationService";
 export default function ResumeEducationList({ id }) {
   const [educations, setEducations] = useState([]);

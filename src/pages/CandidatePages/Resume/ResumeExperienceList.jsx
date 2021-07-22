@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ResumeExperienceService from "../../../services/resumeExperienceService";
 import { Grid, Segment, Label, Divider } from "semantic-ui-react";
-export default function ResumeExperienceList() {
+export default function ResumeExperienceList({ id }) {
   const [experiences, setExperiences] = useState([]);
   useEffect(() => {
     let resumeExperienceService = new ResumeExperienceService();
     resumeExperienceService
-      .getAllByResumeId(13)
+      .getAllByResumeId(id)
       .then((result) => setExperiences(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);

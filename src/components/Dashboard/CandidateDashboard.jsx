@@ -44,11 +44,6 @@ export default function CandidateDashboard() {
                 path="/candidate/myResumes"
                 component={ResumeListForCandidates}
               />
-              {/* <Route
-                exact
-                path="/candidate/myResumes/:id"
-                component={SingleResumeForCandidate}
-              /> */}
             </Container>
           </Grid.Column>
         </Grid.Row>

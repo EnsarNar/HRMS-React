@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ResumeService from "../../services/resumeService";
 import { Table, Button, Icon, Image, Segment } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
 import SingleResumeForCandidate from "./SingleResumeForCandidate";
 
 export default function ResumeListForCandidates() {
@@ -42,18 +41,7 @@ export default function ResumeListForCandidates() {
                   {resume.createdAt.slice(0, 10)}
                 </Table.Cell>
                 <Table.Cell singleLine>
-                  <SingleResumeForCandidate />
-                  {/* <Button
-                    color="green"
-                    animated="fade"
-                    as={NavLink}
-                    to={`/candidate/myResumes/${resume.id}`}
-                  >
-                    <Button.Content visible>Detaylar</Button.Content>
-                    <Button.Content hidden>
-                      <Icon name="mouse pointer" />
-                    </Button.Content>
-                  </Button> */}
+                  <SingleResumeForCandidate id={resume.id} />
                 </Table.Cell>
               </Table.Row>
             ))}

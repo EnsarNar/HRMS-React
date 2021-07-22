@@ -44,11 +44,11 @@ export default function CandidateDashboard() {
                 path="/candidate/myResumes"
                 component={ResumeListForCandidates}
               />
-              <Route
+              {/* <Route
                 exact
                 path="/candidate/myResumes/:id"
                 component={SingleResumeForCandidate}
-              />
+              /> */}
             </Container>
           </Grid.Column>
         </Grid.Row>

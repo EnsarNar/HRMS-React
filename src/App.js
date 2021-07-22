@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import { Route } from "react-router-dom"
 import AccordionTest from './pages/AccordionTest';
 
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
       {/* <Route exact path="/home" component={HomePage} /> */}
       <Route exact path="/" component={HomePage} />
       <Route exact path="/accordion" component={AccordionTest} />
+
 
 
       {/* {window.location.pathname.includes("candidate") && <CandidateDashboard />} */}

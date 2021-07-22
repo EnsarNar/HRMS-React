@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Segment, Label, Divider } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  Label,
+  Divider,
+  Icon,
+  Popup,
+  Button,
+} from "semantic-ui-react";
 import ResumEducationService from "../../../services/resumeEducationService";
 export default function ResumeEducationList({ id }) {
   const [educations, setEducations] = useState([]);
@@ -26,6 +34,15 @@ export default function ResumeEducationList({ id }) {
             <Grid.Column textAlign="center">
               <Segment padded>
                 <Label attached="top left">Okul</Label>
+                <Popup
+                  content="Update"
+                  trigger={
+                    <Label attached="top right" basic>
+                      <Icon name="file alternate" />
+                    </Label>
+                  }
+                />
+
                 {education.schoolName}
               </Segment>
             </Grid.Column>

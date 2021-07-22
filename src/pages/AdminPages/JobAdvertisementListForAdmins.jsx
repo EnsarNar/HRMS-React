@@ -40,7 +40,7 @@ export default function JobAdvertisementList() {
                   </Button>
                 </Link>
                 <Button
-                  onClick={()=>handleClick(advertisement.id)}
+                  onClick={() => handleClick(advertisement.id)}
                   type="submit"
                   basic
                   color="red"

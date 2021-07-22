@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ResumeService from "../../services/resumeService";
 import { Table, Button, Icon, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+
 export default function ResumeListForCandidates() {
   const [resumes, setResumes] = useState([]);
 

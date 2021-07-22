@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Menu } from "semantic-ui-react";
-import CandidateCartSummary from "../../pages/CandidatePages/CandidateCartSummary";
+import CandidateCartSummary from "../../pages/CandidatePages/Cart/CandidateCartSummary";
 import { useSelector } from "react-redux";
 
 export default function CandidateNavi() {

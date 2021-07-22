@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import ResumeService from "../../services/resumeService";
 import ResumeEducationList from "./Resume/ResumeEducationList";
 import ResumeLanguageList from "./Resume/ResumeLanguageList";
 import ResumeExperienceList from "./Resume/ResumeExperienceList";
+import {
+  openModalPage,
+  closeModalPage,
+} from "../../store/actions/modalActions";
 import {
   Button,
   Image,
@@ -20,7 +25,9 @@ import {
 } from "semantic-ui-react";
 
 export default function SingleResumeForCandidate() {
-  const [open, setOpen] = useState(false);
+  const modalState = useSelector((state) => state.modalValue.modalState);
+  const { open } = modalState;
+  const dispatch = useDispatch();
   const [resumes, setResumes] = useState([]);
   const { id } = useParams();
   useEffect(() => {
@@ -32,12 +39,13 @@ export default function SingleResumeForCandidate() {
   }, []);
   return (
     <div>
+      {console.log(open)}
       {resumes.map((resume) => (
         <Modal
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
+          onClose={() => dispatch(closeModalPage(false))}
+          onOpen={() => dispatch(openModalPage(true))}
           open={open}
-          trigger={<Button>Tıkla</Button>}
+          trigger={<Button>tıkla</Button>}
           key={resume.id}
         >
           <Modal.Header>Özgeçmiş</Modal.Header>
@@ -114,23 +122,6 @@ export default function SingleResumeForCandidate() {
             </Grid>
           </ModalContent>
           {/* Resume Technology */}
-          {/* <ModalContent>
-            <ResumeTechnologyList id={resume.id} />
-            <Grid>
-              <Grid.Row>
-                <Popup
-                  content="Add new experience"
-                  trigger={
-                    <Button
-                      style={{ marginLeft: "48%" }}
-                      color="olive"
-                      icon="add"
-                    />
-                  }
-                />
-              </Grid.Row>
-            </Grid>
-          </ModalContent> */}
 
           <ModalContent>
             <Grid columns="equal" divided>
@@ -157,14 +148,17 @@ export default function SingleResumeForCandidate() {
             </Grid>
           </ModalContent>
           <Modal.Actions>
-            <Button color="black" onClick={() => setOpen(false)}>
+            <Button
+              color="black"
+              onClick={() => dispatch(closeModalPage(false))}
+            >
               Çık
             </Button>
             <Button
               content="Kaydet"
               labelPosition="right"
               icon="checkmark"
-              onClick={() => setOpen(false)}
+              onClick={() => dispatch(closeModalPage(false))}
               positive
             />
           </Modal.Actions>

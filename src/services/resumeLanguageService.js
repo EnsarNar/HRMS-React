@@ -6,5 +6,8 @@ export default class ResumeLangugeService {
     getAllByResumeId(id) {
         return axios.get(`http://localhost:8080/api/resumeLanguage/findAllByResumeId?id=${id}`)
     }
+    addLanguage(values) {
+        return axios.post("http://localhost:8080/api/resumeLanguage/add", values)
+    }
 };
 

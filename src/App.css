@@ -75,3 +75,6 @@ label {
 .deneme {
   max-width: 802px;
 }
+.ui.dimmer {
+  background-color: rgba(0, 0, 0, 0);
+}

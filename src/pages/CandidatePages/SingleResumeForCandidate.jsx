@@ -4,6 +4,8 @@ import ResumeEducationList from "./Resume/ResumeEducationList";
 import ResumeLanguageList from "./Resume/ResumeLanguageList";
 import ResumeExperienceList from "./Resume/ResumeExperienceList";
 import ResumeAccountList from "./Resume/ResumeAccountList";
+import AddResumeEducationModal from "./Resume/add/AddResumeEducationModal";
+import AddResumeLanguageModal from "./Resume/add/AddResumeLanguageModal";
 import {
   Button,
   Image,
@@ -18,7 +20,6 @@ import {
   Popup,
   ModalActions,
 } from "semantic-ui-react";
-import AddResumeEducationModal from "./Resume/add/AddResumeEducationModal";
 
 export default function SingleResumeForCandidate({ id }) {
   const [open, setOpen] = useState(false);
@@ -97,7 +98,7 @@ export default function SingleResumeForCandidate({ id }) {
             <Grid.Row>
               <Container>
                 {/* Buton getiriyor */}
-                <AddResumeEducationModal />
+                <AddResumeEducationModal resumeId={id} />
               </Container>
             </Grid.Row>
           </Grid>
@@ -107,16 +108,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeLanguageList id={id} />
           <Grid>
             <Grid.Row>
-              <Popup
-                content="Add new language"
-                trigger={
-                  <Button
-                    style={{ marginLeft: "48%" }}
-                    color="olive"
-                    icon="add"
-                  />
-                }
-              />
+              <Container>
+                <AddResumeLanguageModal resumeId={id} />
+              </Container>
             </Grid.Row>
           </Grid>
         </ModalContent>

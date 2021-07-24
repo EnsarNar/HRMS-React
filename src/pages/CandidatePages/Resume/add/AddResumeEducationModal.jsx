@@ -20,7 +20,6 @@ export default function AddResumeEducationModal({ resumeId }) {
   const initialValues = {
     schoolName: "",
     startingDate: "",
-
     graduateDate: "",
     departmentName: "",
   };
@@ -32,7 +31,9 @@ export default function AddResumeEducationModal({ resumeId }) {
   });
   let addToDatabase = (values) => {
     let resumeEducationService = new ResumeEducationService();
-    resumeEducationService.addEducation(values);
+    resumeEducationService
+      .addEducation(values)
+      .catch((err) => console.log(err.message));
   };
   return (
     <div>
@@ -58,8 +59,7 @@ export default function AddResumeEducationModal({ resumeId }) {
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
-              // values.resumeId = resumeId;
-              values.resumeId = 13;
+              values.resumeId = resumeId;
               addToDatabase(values);
               console.log(values);
             }}
@@ -117,7 +117,7 @@ export default function AddResumeEducationModal({ resumeId }) {
                 <Button
                   icon="checkmark"
                   content="Ekle"
-                  onClick={() => setOpen(false)}
+                  // onClick={() => setOpen(false)}
                   positive
                   type="submit"
                 />

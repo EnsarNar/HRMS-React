@@ -14,7 +14,6 @@ export default function ResumeLanguageList({ id }) {
   }, []);
   return (
     <div>
-      {console.log(languages)}
       <Grid columns="equal" divided>
         <Grid.Row>
           <Grid.Column textAlign="center">

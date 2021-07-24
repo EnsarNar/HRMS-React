@@ -6,6 +6,7 @@ import { Progress, Button } from "semantic-ui-react";
 import KodlamaIoTextInputForTextArea from "../../utilities/customFormControls/KodlamaIoTextInputForTextArea";
 import { useDispatch, useSelector } from "react-redux";
 import { incresePercent } from "../../store/actions/percentActions";
+
 export default function CompulsoryResumeAdd() {
   const dispatch = useDispatch();
   let progressPercent = useSelector(
@@ -60,7 +61,7 @@ export default function CompulsoryResumeAdd() {
             placeholder="coverLetter"
             style={{ minHeight: 100 }}
           />
-          <div className="ui inverted divider"></div>
+
           <Button.Group>
             <Button color="red">Geri</Button>
             <Button.Or text="or" />

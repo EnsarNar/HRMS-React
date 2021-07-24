@@ -7,5 +7,7 @@ export default class ResumEducationService {
     getAllByResumeId(id) {
         return axios.get(`http://localhost:8080/api/resumeEducation/findAllByResumeId?id=${id}`);
     }
-
+    addEducation(value) {
+        return axios.post("http://localhost:8080/api/resumeEducation/add", value)
+    }
 };

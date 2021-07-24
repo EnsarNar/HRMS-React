@@ -7,7 +7,6 @@ export default function CandidateCartSummary() {
 
   return (
     <div>
-      {console.log(favoriteItems.jobAdvertisement)}
       <Dropdown item text="Favoriler">
         <Dropdown.Menu>
           {/* <Button onClick={() => console.log(favoriteItems)}>tıkla</Button> */}

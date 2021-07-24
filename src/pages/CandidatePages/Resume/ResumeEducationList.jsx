@@ -53,12 +53,21 @@ export default function ResumeEducationList({ id }) {
               </Segment>
             </Grid.Column>
             <Grid.Column textAlign="center">
-              <Segment padded>
-                <Label attached="top left">Mezuniyet Tarihi</Label>
-                {education.graduateDate}
-              </Segment>
+              {!education.graduateDate ? (
+                <Segment padded>
+                  <Label attached="top left">Mezuniyet Tarihi</Label>
+                  <p>Devam ediyor...</p>
+                </Segment>
+              ) : (
+                <Segment padded>
+                  <Label attached="top left">Mezuniyet Tarihi</Label>
+                  {education.graduateDate}
+                </Segment>
+              )}
             </Grid.Column>
           </Grid.Row>
+
+          <Divider />
         </Grid>
       ))}
     </div>

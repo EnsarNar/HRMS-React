@@ -29,13 +29,21 @@ export default function AddResumeLanguageModal({ resumeId }) {
   }, []);
   const initialValues = {
     languageId: "",
+    // grade: "",
   };
   const schema = Yup.object({
     languageId: Yup.number().required("Bu kısım boş geçilemez"),
+    // grade: Yup.number().required("Bu kısım boş geçilemez"),
   });
   const [rate, setRate] = useState();
 
   let handleRate = (e, { rating }) => setRate({ rating });
+  let addLanguageToDatabase = (values) => {
+    let resumeLanguageService = new ResumeLanguageService();
+    resumeLanguageService
+      .addLanguage(values)
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div>
       <Modal
@@ -62,6 +70,7 @@ export default function AddResumeLanguageModal({ resumeId }) {
             onSubmit={(values) => {
               values.resumeId = resumeId;
               values.grade = rate.rating;
+              addLanguageToDatabase(values);
               console.log(values);
             }}
           >
@@ -86,11 +95,7 @@ export default function AddResumeLanguageModal({ resumeId }) {
                   <Grid.Column>
                     <Segment>
                       <Label attached="top left">Seviye</Label>
-                      {/* <KodlamaIoRateInput
-                        as="rate"
-                        name="grade"
-                        
-                      /> */}
+
                       <Rating
                         maxRating={5}
                         defaultRating={1}

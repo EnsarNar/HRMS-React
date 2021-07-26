@@ -9,6 +9,7 @@ import {
   Popup,
   Button,
 } from "semantic-ui-react";
+import { unstable_concurrentAct } from "react-dom/cjs/react-dom-test-utils.production.min";
 export default function ResumeAccountList({ id }) {
   const [accounts, setAccounts] = useState([]);
   useEffect(() => {
@@ -28,22 +29,42 @@ export default function ResumeAccountList({ id }) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Grid columns={3}>
-        <Grid.Row>
-          {accounts.map((account) => (
-            <Grid.Column key={account.id} textAlign="center">
-              <Button color="black" target="_blank" href={account.github}>
-                <Icon name="github" />
-                GitHub
-              </Button>
-              <Button color="linkedin" target="_blank" href={account.linkedin}>
-                <Icon name="linkedin" />
-                Linkedin
-              </Button>
-            </Grid.Column>
-          ))}
-        </Grid.Row>
-      </Grid>
+
+      {accounts.map((account) => (
+        <Grid columns="equal">
+          <Grid.Row key={account.id}>
+            {account.github ? (
+              <Grid.Column textAlign="center">
+                <Button
+                  color="black"
+                  target="_blank"
+                  href={account.github}
+                  fluid
+                >
+                  <Icon name="github" />
+                  Github
+                </Button>
+              </Grid.Column>
+            ) : null}
+            {account.linkedin ? (
+              <Grid.Column textAlign="center">
+                <Button
+                  color="linkedin"
+                  target="_blank"
+                  href={account.linkedin}
+                  fluid
+                >
+                  <Icon name="linkedin" />
+                  Linkedin
+                </Button>
+              </Grid.Column>
+            ) : null}
+
+            {/* Yen bir şey eklenecegi zaman grid.column ekle yeni bir tane */}
+          </Grid.Row>
+          <Divider />
+        </Grid>
+      ))}
     </div>
   );
 }

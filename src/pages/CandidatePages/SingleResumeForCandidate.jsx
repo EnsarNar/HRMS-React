@@ -6,6 +6,8 @@ import ResumeExperienceList from "./Resume/ResumeExperienceList";
 import ResumeAccountList from "./Resume/ResumeAccountList";
 import AddResumeEducationModal from "./Resume/add/AddResumeEducationModal";
 import AddResumeLanguageModal from "./Resume/add/AddResumeLanguageModal";
+import AddResumeExperienceModal from "./Resume/add/AddResumeExperienceModal";
+import AddResumeAccountModal from "./Resume/add/AddResumeAccountModal";
 import {
   Button,
   Image,
@@ -77,11 +79,7 @@ export default function SingleResumeForCandidate({ id }) {
             <Grid columns={1}>
               <Grid.Row stretched className="deneme ">
                 <Grid.Column>
-                  <Segment
-                    textAlign="center"
-                    scrolling
-                    style={{ height: "20em" }}
-                  >
+                  <Segment textAlign="center" style={{ height: "20em" }}>
                     <p style={{ maxWidth: "808px" }}>{resume.coverLetter}</p>
                   </Segment>
                 </Grid.Column>
@@ -119,16 +117,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeExperienceList id={id} />
           <Grid>
             <Grid.Row>
-              <Popup
-                content="Add new experience"
-                trigger={
-                  <Button
-                    style={{ marginLeft: "48%" }}
-                    color="olive"
-                    icon="add"
-                  />
-                }
-              />
+              <Container>
+                <AddResumeExperienceModal resumeId={id} />
+              </Container>
             </Grid.Row>
           </Grid>
         </ModalContent>
@@ -137,16 +128,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeAccountList id={id} />
           <Grid>
             <Grid.Row>
-              <Popup
-                content="Add new account"
-                trigger={
-                  <Button
-                    style={{ marginLeft: "48%" }}
-                    color="olive"
-                    icon="add"
-                  />
-                }
-              />
+              <Container>
+                <AddResumeAccountModal resumeId={id} />
+              </Container>
             </Grid.Row>
           </Grid>
         </ModalContent>

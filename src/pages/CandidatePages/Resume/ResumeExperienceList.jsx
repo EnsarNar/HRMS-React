@@ -50,6 +50,7 @@ export default function ResumeExperienceList({ id }) {
               </Segment>
             </Grid.Column>
           </Grid.Row>
+          <Divider />
         </Grid>
       ))}
     </div>

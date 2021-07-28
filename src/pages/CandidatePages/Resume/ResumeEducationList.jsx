@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Segment, Label, Divider, Icon, Popup } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  Label,
+  Divider,
+  Icon,
+  Popup,
+  Button,
+} from "semantic-ui-react";
 import ResumEducationService from "../../../services/resumeEducationService";
+import UpdateResumeEducationModal from "./update/UpdateResumeEducationModal.jsx";
 export default function ResumeEducationList({ id }) {
   const [educations, setEducations] = useState([]);
+
   useEffect(() => {
     let resumeEducationService = new ResumEducationService();
     resumeEducationService
@@ -10,6 +20,7 @@ export default function ResumeEducationList({ id }) {
       .then((result) => setEducations(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
+
   return (
     <div>
       <Grid columns="equal" divided>
@@ -20,8 +31,15 @@ export default function ResumeEducationList({ id }) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+
       {educations.map((education) => (
         <Grid columns="equal" key={education.id}>
+          <Button color="red">
+            <Icon name="trash" />
+            Sil
+          </Button>
+          {/* Güncelleme Modali */}
+          <UpdateResumeEducationModal />
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment padded>

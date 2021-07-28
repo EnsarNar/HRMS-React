@@ -18,9 +18,6 @@ import {
   ModalContent,
   Container,
   Divider,
-  Rating,
-  Popup,
-  ModalActions,
 } from "semantic-ui-react";
 
 export default function SingleResumeForCandidate({ id }) {

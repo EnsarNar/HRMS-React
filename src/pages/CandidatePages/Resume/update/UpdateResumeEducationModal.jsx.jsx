@@ -1,21 +1,10 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  Icon,
-  Grid,
-  Segment,
-  Label,
-  Divider,
-} from "semantic-ui-react";
-import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
 import { Formik, Form } from "formik"; //Form
+import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
 import * as Yup from "yup";
-import ResumeEducationService from "../../../../services/resumeEducationService";
-
-export default function AddResumeEducationModal({ resumeId }) {
+import { Button, Grid, Segment, Label, Icon, Modal } from "semantic-ui-react";
+export default function UpdateResumeEducationModal({ resumeId }) {
   const [open, setOpen] = useState(false);
-
   const initialValues = {
     schoolName: "",
     startingDate: "",
@@ -23,17 +12,12 @@ export default function AddResumeEducationModal({ resumeId }) {
     departmentName: "",
   };
   const schema = Yup.object({
-    schoolName: Yup.string().required("Bu kısım boş geçilemez."),
-    startingDate: Yup.date().required("Bu kısım boş geçilemez."),
+    schoolName: Yup.string(),
+    startingDate: Yup.date(),
     graduateDate: Yup.date(),
-    departmentName: Yup.string().required("Bu kısım boş geçilemez."),
+    departmentName: Yup.string(),
   });
-  let addEducationToDatabase = (values) => {
-    let resumeEducationService = new ResumeEducationService();
-    resumeEducationService
-      .addEducation(values)
-      .catch((err) => console.log(err.message));
-  };
+
   return (
     <div>
       <Modal
@@ -41,25 +25,19 @@ export default function AddResumeEducationModal({ resumeId }) {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button style={{ marginLeft: "48%" }} color="olive" icon="add" />
+          <Button color="green">
+            <Icon name="pencil" />
+            Güncelle
+          </Button>
         }
       >
-        <Modal.Header>Eğitim Bilgisi Ekleme Formu</Modal.Header>
+        <Modal.Header>Eğitim Bilgisi Güncelleme Formu</Modal.Header>
         <Modal.Content>
-          <Grid columns="equal" divided>
-            <Grid.Row>
-              <Grid.Column textAlign="center">
-                <h3>Eğitim Bilgisi Ekle !</h3>
-                <Divider />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
               values.resumeId = resumeId;
-              addEducationToDatabase(values);
               console.log(values);
             }}
           >
@@ -71,7 +49,7 @@ export default function AddResumeEducationModal({ resumeId }) {
                       <Label attached="top left">Okul</Label>
                       <KodlamaIoInput
                         name="schoolName"
-                        placeholder="schoolName"
+                        placeholder="Yeni Okul Adı"
                       />
                     </Segment>
                   </Grid.Column>
@@ -80,7 +58,7 @@ export default function AddResumeEducationModal({ resumeId }) {
                       <Label attached="top left">Bölüm</Label>
                       <KodlamaIoInput
                         name="departmentName"
-                        placeholder="departmentName"
+                        placeholder="Yeni Bölüm Adı"
                       />
                     </Segment>
                   </Grid.Column>
@@ -89,33 +67,25 @@ export default function AddResumeEducationModal({ resumeId }) {
                   <Grid.Column>
                     <Segment>
                       <Label attached="top left">Okula Başlama Tarihi</Label>
-                      <KodlamaIoInput
-                        name="startingDate"
-                        placeholder="startingDate"
-                        type="date"
-                      />
+                      <KodlamaIoInput name="startingDate" type="date" />
                     </Segment>
                   </Grid.Column>
                   <Grid.Column>
                     <Segment>
                       <Label attached="top left">Mezuniyet Tarihi</Label>
-                      <KodlamaIoInput
-                        name="graduateDate"
-                        placeholder="graduateDate"
-                        type="date"
-                      />
+                      <KodlamaIoInput name="graduateDate" type="date" />
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-              <div style={{ marginLeft: "45em", marginTop: "3em" }}>
+              <div style={{ marginLeft: "40em", marginTop: "3em" }}>
                 <Button color="red" onClick={() => setOpen(false)}>
                   <Icon name="window close" />
                   Çık
                 </Button>
                 <Button
-                  icon="checkmark"
-                  content="Ekle"
+                  icon="pencil"
+                  content="Güncelle"
                   // onClick={() => setOpen(false)}
                   positive
                   type="submit"

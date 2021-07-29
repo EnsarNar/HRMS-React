@@ -16,7 +16,7 @@ export default function ResumeEducationList({ id }) {
   useEffect(() => {
     let resumeEducationService = new ResumEducationService();
     resumeEducationService
-      .getAllByResumeId(id)
+      .getAllByResumeIdOrderedByIdAsc(id)
       .then((result) => setEducations(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
@@ -39,7 +39,10 @@ export default function ResumeEducationList({ id }) {
             Sil
           </Button>
           {/* Güncelleme Modali */}
-          <UpdateResumeEducationModal />
+          <UpdateResumeEducationModal
+            resumeId={education.resumeId}
+            education={education}
+          />
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment padded>

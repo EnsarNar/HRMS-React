@@ -3,13 +3,18 @@ import { Formik, Form } from "formik"; //Form
 import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
 import * as Yup from "yup";
 import { Button, Grid, Segment, Label, Icon, Modal } from "semantic-ui-react";
-export default function UpdateResumeEducationModal({ resumeId }) {
+// import ResumeEducationService from "../../../../services/resumeEducationService";
+import DenemeService from "../../../../services/denemeService";
+import { toast } from "react-toastify";
+export default function UpdateResumeEducationModal({ education, resumeId }) {
   const [open, setOpen] = useState(false);
   const initialValues = {
-    schoolName: "",
-    startingDate: "",
-    graduateDate: "",
-    departmentName: "",
+    schoolName: education.schoolName,
+    startingDate: education.startingDate,
+    graduateDate: education.graduateDate,
+    departmentName: education.departmentName,
+    id: education.id,
+    resumeId: resumeId,
   };
   const schema = Yup.object({
     schoolName: Yup.string(),
@@ -17,13 +22,20 @@ export default function UpdateResumeEducationModal({ resumeId }) {
     graduateDate: Yup.date(),
     departmentName: Yup.string(),
   });
-
+  let updateHandler = (values) => {
+    let denemeService = new DenemeService();
+    denemeService
+      .updateEducation(values)
+      .then((result) => toast.success(result.data.message))
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div>
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
+        dimmer="blurring"
         trigger={
           <Button color="green">
             <Icon name="pencil" />
@@ -37,8 +49,9 @@ export default function UpdateResumeEducationModal({ resumeId }) {
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
-              values.resumeId = resumeId;
+              updateHandler(values);
               console.log(values);
+              setOpen(false);
             }}
           >
             <Form className="ui form">
@@ -86,7 +99,6 @@ export default function UpdateResumeEducationModal({ resumeId }) {
                 <Button
                   icon="pencil"
                   content="Güncelle"
-                  // onClick={() => setOpen(false)}
                   positive
                   type="submit"
                 />

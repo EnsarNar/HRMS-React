@@ -19,6 +19,7 @@ import {
   Container,
   Divider,
 } from "semantic-ui-react";
+import ResumeTechnologyList from "./Resume/ResumeTechnologyList";
 
 export default function SingleResumeForCandidate({ id }) {
   const [open, setOpen] = useState(false);
@@ -109,7 +110,18 @@ export default function SingleResumeForCandidate({ id }) {
             </Grid.Row>
           </Grid>
         </ModalContent>
-        {/* Resume Experience  */}
+        {/* Resume Technology List */}
+        <ModalContent>
+          <ResumeTechnologyList id={id} />
+          <Grid>
+            <Grid.Row>
+              <Container>
+                {/* <AddResumeTechnologyModal resumeId={id} /> */}
+              </Container>
+            </Grid.Row>
+          </Grid>
+        </ModalContent>
+        {/* Resume Experience  List*/}
         <ModalContent>
           <ResumeExperienceList id={id} />
           <Grid>

@@ -31,8 +31,8 @@ export default function ResumeAccountList({ id }) {
       </Grid>
 
       {accounts.map((account) => (
-        <Grid columns="equal">
-          <Grid.Row key={account.id}>
+        <Grid columns="equal" key={account.id}>
+          <Grid.Row>
             {account.github ? (
               <Grid.Column textAlign="center">
                 <Button

@@ -9,46 +9,33 @@ import {
   Label,
   Divider,
   Rating,
-  FormField,
 } from "semantic-ui-react";
 import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
-import KodlamaIoRateInput from "../../../../utilities/customFormControls/KodlamaIoRateInput";
+import ResumeTechnologyService from "../../../../services/resumeTechnologyService";
 import { Formik, Form, Field } from "formik"; //Form
 import * as Yup from "yup";
-import ResumeLanguageService from "../../../../services/resumeLanguageService";
-import LanguageService from "../../../../services/languageService";
-export default function AddResumeLanguageModal({ resumeId }) {
-  const [languages, setLanguages] = useState([]);
+
+export default function AddResumeTechnologyModal({ resumeId }) {
   const [open, setOpen] = useState(false);
   const [rate, setRate] = useState();
-  useEffect(() => {
-    let languageService = new LanguageService();
-    languageService
-      .getAll()
-      .then((result) => setLanguages(result.data.data))
-      .catch((err) => console.log(err.message));
-  }, []);
   const initialValues = {
-    languageId: "",
-    // grade: "",
+    programmingLanguageName: "",
   };
   const schema = Yup.object({
-    languageId: Yup.number().required("Bu kısım boş geçilemez"),
-    // grade: Yup.number().required("Bu kısım boş geçilemez"),
+    programmingLanguageName: Yup.string().required("Bu kısım boş geçilemez"),
   });
 
+  let addTechnologyToDatabase = (values) => {
+    let resumeTechnologyService = new ResumeTechnologyService();
+    resumeTechnologyService
+      .addTechnology(values)
+      .catch((err) => console.log(err.message));
+  };
   let handleRate = (e, { rating }) => {
     setRate({ rating });
   };
-  let addLanguageToDatabase = (values) => {
-    let resumeLanguageService = new ResumeLanguageService();
-    resumeLanguageService
-      .addLanguage(values)
-      .catch((err) => console.log(err.message));
-  };
   return (
     <div>
-      {console.log(rate)}
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -57,12 +44,12 @@ export default function AddResumeLanguageModal({ resumeId }) {
           <Button style={{ marginLeft: "48%" }} color="olive" icon="add" />
         }
       >
-        <Modal.Header>Dil Ekleme Formu</Modal.Header>
+        <Modal.Header>Teknoloji Ekleme Formu</Modal.Header>
         <Modal.Content>
           <Grid columns="equal" divided>
             <Grid.Row>
               <Grid.Column textAlign="center">
-                <h3>Dil Bilgisi !</h3>
+                <h3>Teknoloji Bilgisi !</h3>
                 <Divider />
               </Grid.Column>
             </Grid.Row>
@@ -73,8 +60,8 @@ export default function AddResumeLanguageModal({ resumeId }) {
             onSubmit={(values) => {
               values.resumeId = resumeId;
               values.grade = rate.rating;
-              addLanguageToDatabase(values);
               console.log(values);
+              addTechnologyToDatabase(values);
             }}
           >
             <Form className="ui form">
@@ -82,23 +69,16 @@ export default function AddResumeLanguageModal({ resumeId }) {
                 <Grid.Row>
                   <Grid.Column>
                     <Segment>
-                      <Label attached="top left">Dİller</Label>
-                      <KodlamaIoInput as="select" name="languageId">
-                        <option selected hidden>
-                          Dil Seçiniz
-                        </option>
-                        {languages.map((language) => (
-                          <option key={language.id} value={language.id}>
-                            {language.languageName}
-                          </option>
-                        ))}
-                      </KodlamaIoInput>
+                      <Label attached="top left"> Teknoloji</Label>
+                      <KodlamaIoInput
+                        name="programmingLanguageName"
+                        placeholder="Teknoloji Adı"
+                      />
                     </Segment>
                   </Grid.Column>
                   <Grid.Column>
                     <Segment>
-                      <Label attached="top left">Seviye</Label>
-
+                      <Label attached="top left"> Seviye</Label>
                       <Rating
                         maxRating={5}
                         defaultRating={1}

@@ -5,8 +5,11 @@ import * as Yup from "yup";
 import { Button, Grid, Segment, Label, Icon, Modal } from "semantic-ui-react";
 import ResumeExperienceService from "../../../../services/resumeExperienceService";
 import { toast } from "react-toastify";
+
 export default function UpdateResmeExperienceModal({ resumeId, experience }) {
   const [open, setOpen] = useState(false);
+  const [languages, setLanguages] = useState([]);
+
   const initialValues = {
     companyName: experience.companyName,
     endDate: experience.endDate,

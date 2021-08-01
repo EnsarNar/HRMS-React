@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ResumeTechnologyService from "../../../services/resumeTechnologyService";
-import { Grid, Divider, Segment, Label, Rating } from "semantic-ui-react";
+import {
+  Grid,
+  Divider,
+  Segment,
+  Label,
+  Rating,
+  Button,
+  Icon,
+} from "semantic-ui-react";
+import UpdateResumeTechnologiesModal from "./update/UpdateResumeTechnologiesModal";
 export default function ResumeTechnologyList({ id }) {
   const [technologies, setTechnologies] = useState([]);
 
@@ -24,6 +33,14 @@ export default function ResumeTechnologyList({ id }) {
       </Grid>
       {technologies.map((tech) => (
         <Grid key={tech.id} columns="equal">
+          <Button color="red">
+            <Icon name="trash" />
+            Sil
+          </Button>
+          <UpdateResumeTechnologiesModal
+            resumeId={tech.resumeId}
+            technology={tech}
+          />
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment style={{ height: "95px" }} padded>

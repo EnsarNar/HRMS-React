@@ -34,7 +34,7 @@ export default function ResumeEducationList({ id }) {
 
       {educations.map((education) => (
         <Grid columns="equal" key={education.id}>
-          <Button color="red">
+          <Button color="red" size="small">
             <Icon name="trash" />
             Sil
           </Button>
@@ -47,14 +47,6 @@ export default function ResumeEducationList({ id }) {
             <Grid.Column textAlign="center">
               <Segment padded>
                 <Label attached="top left">Okul</Label>
-                <Popup
-                  content="Update"
-                  trigger={
-                    <Label attached="top right" basic>
-                      <Icon name="file alternate" />
-                    </Label>
-                  }
-                />
 
                 {education.schoolName}
               </Segment>

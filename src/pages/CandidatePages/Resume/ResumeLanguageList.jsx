@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-
 import ResumeLangugeService from "../../../services/resumeLanguageService";
-import { Grid, Segment, Label, Divider, Rating } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  Label,
+  Divider,
+  Rating,
+  Button,
+  Icon,
+} from "semantic-ui-react";
+import UpdateResumeLanguageModal from "./update/UpdateResumeLanguageModal";
 export default function ResumeLanguageList({ id }) {
   const [languages, setLanguages] = useState([]);
 
@@ -24,6 +32,14 @@ export default function ResumeLanguageList({ id }) {
       </Grid>
       {languages.map((language) => (
         <Grid columns="equal" key={language.id}>
+          <Button color="red">
+            <Icon name="trash" />
+            Sil
+          </Button>
+          <UpdateResumeLanguageModal
+            resumeId={language.resumeId}
+            language={language}
+          />
           <Grid.Row>
             <Grid.Column textAlign="center">
               <Segment style={{ height: "95px" }} padded>

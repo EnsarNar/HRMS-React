@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-
+import { Formik, Form } from "formik"; //Form
+import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
+import * as Yup from "yup";
 import {
   Button,
-  Modal,
-  Icon,
   Grid,
   Segment,
   Label,
-  Divider,
+  Icon,
+  Modal,
   Rating,
-  FormField,
 } from "semantic-ui-react";
-import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
-import { Formik, Form, Field } from "formik"; //Form
-import * as Yup from "yup";
-import ResumeLanguageService from "../../../../services/resumeLanguageService";
+import { toast } from "react-toastify";
 import LanguageService from "../../../../services/languageService";
-export default function AddResumeLanguageModal({ resumeId }) {
+import ResumeLangugeService from "../../../../services/resumeLanguageService";
+export default function UpdateResumeLanguageModal({ resumeId, language }) {
   const [languages, setLanguages] = useState([]);
   const [open, setOpen] = useState(false);
   const [rate, setRate] = useState();
@@ -27,52 +25,51 @@ export default function AddResumeLanguageModal({ resumeId }) {
       .then((result) => setLanguages(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
+
   const initialValues = {
-    languageId: "",
-    // grade: "",
+    languageId: language.languageId,
+    grade: language.grade,
+    id: language.id,
+    resumeId: resumeId,
   };
   const schema = Yup.object({
-    languageId: Yup.number().required("Bu kısım boş geçilemez"),
-    // grade: Yup.number().required("Bu kısım boş geçilemez"),
+    languageId: Yup.string().required("Bu kısım boş geçilemez"),
+    grade: Yup.number().required("Bu kısım boş geçilemez"),
+    id: Yup.number().required("Bu kısım boş geçilemez"),
+    resumeId: Yup.number().required("Bu kısım boş geçilemez"),
   });
-
   let handleRate = (e, { rating }) => {
     setRate({ rating });
   };
-  let addLanguageToDatabase = (values) => {
-    let resumeLanguageService = new ResumeLanguageService();
+  let updateLanguage = (values) => {
+    let resumeLanguageService = new ResumeLangugeService();
     resumeLanguageService
-      .addLanguage(values)
+      .updateLanguage(values)
       .catch((err) => console.log(err.message));
   };
+
   return (
     <div>
-      {console.log(rate)}
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button style={{ marginLeft: "48%" }} color="olive" icon="add" />
+          <Button color="green">
+            <Icon name="pencil" />
+            Güncelle
+          </Button>
         }
       >
-        <Modal.Header>Dil Ekleme Formu</Modal.Header>
+        <Modal.Header>Dil Güncelleme Formu</Modal.Header>
         <Modal.Content>
-          <Grid columns="equal" divided>
-            <Grid.Row>
-              <Grid.Column textAlign="center">
-                <h3>Dil Bilgisi !</h3>
-                <Divider />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
               values.resumeId = resumeId;
               values.grade = rate.rating;
-              addLanguageToDatabase(values);
+              updateLanguage(values);
               console.log(values);
             }}
           >
@@ -81,11 +78,9 @@ export default function AddResumeLanguageModal({ resumeId }) {
                 <Grid.Row>
                   <Grid.Column>
                     <Segment>
-                      <Label attached="top left">Dİller</Label>
+                      <Label attached="top left"> Dil</Label>
                       <KodlamaIoInput as="select" name="languageId">
-                        <option selected hidden>
-                          Dil Seçiniz
-                        </option>
+                        <option selected hidden></option>
                         {languages.map((language) => (
                           <option key={language.id} value={language.id}>
                             {language.languageName}
@@ -97,7 +92,6 @@ export default function AddResumeLanguageModal({ resumeId }) {
                   <Grid.Column>
                     <Segment>
                       <Label attached="top left">Seviye</Label>
-
                       <Rating
                         maxRating={5}
                         defaultRating={1}
@@ -109,15 +103,14 @@ export default function AddResumeLanguageModal({ resumeId }) {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-              <div style={{ marginLeft: "45em", marginTop: "3em" }}>
+              <div style={{ marginLeft: "40em", marginTop: "3em" }}>
                 <Button color="red" onClick={() => setOpen(false)}>
                   <Icon name="window close" />
                   Çık
                 </Button>
                 <Button
-                  icon="checkmark"
-                  content="Ekle"
-                  // onClick={() => setOpen(false)}
+                  icon="pencil"
+                  content="Güncelle"
                   positive
                   type="submit"
                 />

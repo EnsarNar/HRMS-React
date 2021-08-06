@@ -8,6 +8,8 @@ import AddResumeEducationModal from "./Resume/add/AddResumeEducationModal";
 import AddResumeLanguageModal from "./Resume/add/AddResumeLanguageModal";
 import AddResumeExperienceModal from "./Resume/add/AddResumeExperienceModal";
 import AddResumeAccountModal from "./Resume/add/AddResumeAccountModal";
+import UpdateResumeCoverLetter from "./Resume/update/UpdateResumeCoverLetter";
+import ResumeCoverLetterList from "./Resume/ResumeCoverLetterList";
 import {
   Button,
   Image,
@@ -18,6 +20,7 @@ import {
   ModalContent,
   Container,
   Divider,
+  GridColumn,
 } from "semantic-ui-react";
 import ResumeTechnologyList from "./Resume/ResumeTechnologyList";
 import AddResumeTechnologyModal from "./Resume/add/AddResumeTechnologyModal";
@@ -25,6 +28,7 @@ import AddResumeTechnologyModal from "./Resume/add/AddResumeTechnologyModal";
 export default function SingleResumeForCandidate({ id }) {
   const [open, setOpen] = useState(false);
   const [resumes, setResumes] = useState([]);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     let resumeService = new ResumeService();
@@ -52,10 +56,15 @@ export default function SingleResumeForCandidate({ id }) {
 
         {resumes.map((resume) => (
           <Modal.Content key={resume.id}>
+            {/* Fundamental Infos */}
             <Grid columns="equal" divided>
               <Grid.Row>
                 <Grid.Column>
-                  <Image size="small" src={resume.profilePictureUrl} wrapped />
+                  <Image
+                    size="small"
+                    src="https://res.cloudinary.com/drtniio0r/image/upload/v1624707367/noperson_e8gskq.png"
+                    wrapped
+                  />
                 </Grid.Column>
                 <Grid.Column textAlign="center">
                   İsim
@@ -67,6 +76,7 @@ export default function SingleResumeForCandidate({ id }) {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            {/* Cover Letter */}
             <Grid columns="equal" divided>
               <Grid.Row>
                 <Grid.Column textAlign="center">
@@ -75,15 +85,72 @@ export default function SingleResumeForCandidate({ id }) {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-            <Grid columns={1}>
-              <Grid.Row stretched className="deneme ">
-                <Grid.Column>
-                  <Segment textAlign="center" style={{ height: "20em" }}>
-                    <p style={{ maxWidth: "808px" }}>{resume.coverLetter}</p>
-                  </Segment>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+
+            {isActive ? (
+              <Grid columns="equal">
+                <Grid.Row>
+                  <Grid.Column>
+                    <Button
+                      animated="vertical"
+                      onClick={() => setIsActive(false)}
+                      color="red"
+                      style={{ marginBottom: "1em", padding: "7px 7px" }}
+                    >
+                      <Button.Content visible style={{ paddingLeft: "1em" }}>
+                        İptal
+                      </Button.Content>
+                      <Button.Content hidden>
+                        <Icon name="close" />
+                      </Button.Content>
+                    </Button>
+
+                    <UpdateResumeCoverLetter
+                      changeIsActive={(value) => setIsActive(value)}
+                      resumeId={resume.id}
+                      coverLetter={resume.coverLetter}
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            ) : (
+              <Grid columns="equal">
+                {console.log(!resume.coverLetter)}
+                <Grid.Row>
+                  <Grid.Column>
+                    {!resume.coverLetter > 0 ? (
+                      <Button
+                        animated="vertical"
+                        color="green"
+                        style={{ marginBottom: "1em", padding: "7px 7px" }}
+                      >
+                        <Button.Content visible style={{ paddingLeft: "1em" }}>
+                          Ekle
+                        </Button.Content>
+                        <Button.Content hidden>
+                          <Icon name="plus" />
+                        </Button.Content>
+                      </Button>
+                    ) : (
+                      <Button
+                        animated="vertical"
+                        onClick={() => setIsActive(true)}
+                        color="green"
+                        style={{ marginBottom: "1em", padding: "7px 7px" }}
+                      >
+                        <Button.Content visible style={{ paddingLeft: "1em" }}>
+                          Güncelle
+                        </Button.Content>
+                        <Button.Content hidden>
+                          <Icon name="pencil" />
+                        </Button.Content>
+                      </Button>
+                    )}
+
+                    <ResumeCoverLetterList id={id} />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            )}
           </Modal.Content>
         ))}
 
@@ -136,6 +203,7 @@ export default function SingleResumeForCandidate({ id }) {
         {/* Resume Accounts  */}
         <ModalContent>
           <ResumeAccountList id={id} />
+
           <Grid>
             <Grid.Row>
               <Container>

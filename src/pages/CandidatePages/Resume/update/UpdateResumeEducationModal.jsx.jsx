@@ -37,7 +37,7 @@ export default function UpdateResumeEducationModal({ education, resumeId }) {
         open={open}
         dimmer="blurring"
         trigger={
-          <Button color="green">
+          <Button color="green" style={{ padding: "7px 7px" }}>
             <Icon name="pencil" />
             Güncelle
           </Button>

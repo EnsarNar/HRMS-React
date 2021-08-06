@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ResumeExperienceService from "../../../services/resumeExperienceService";
 import { Grid, Segment, Label, Divider, Button, Icon } from "semantic-ui-react";
 import UpdateResmeExperienceModal from "./update/UpdateResmeExperienceModal";
+import UpdateResumeAccountModal from "./update/UpdateResumeAccountModal";
 export default function ResumeExperienceList({ id }) {
   const [experiences, setExperiences] = useState([]);
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function ResumeExperienceList({ id }) {
       </Grid>
       {experiences.map((experience) => (
         <Grid columns="equal" key={experience.id}>
-          <Button color="red">
+          <Button color="red" style={{ padding: "7px 7px" }}>
             <Icon name="trash" />
             Sil
           </Button>

@@ -32,13 +32,13 @@ export default function ResumeLanguageList({ id }) {
       </Grid>
       {languages.map((language) => (
         <Grid columns="equal" key={language.id}>
-          <Button color="red">
+          <Button color="red" style={{ padding: "7px 7px" }}>
             <Icon name="trash" />
             Sil
           </Button>
           <UpdateResumeLanguageModal
             resumeId={language.resumeId}
-            language={language}
+            id={language.id}
           />
           <Grid.Row>
             <Grid.Column textAlign="center">

@@ -47,7 +47,7 @@ export default function UpdateResumeTechnologiesModal({
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button color="green">
+          <Button color="green" style={{ padding: "7px 7px" }}>
             <Icon name="pencil" />
             Güncelle
           </Button>

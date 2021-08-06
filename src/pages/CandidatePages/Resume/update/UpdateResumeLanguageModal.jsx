@@ -14,9 +14,10 @@ import {
 import { toast } from "react-toastify";
 import LanguageService from "../../../../services/languageService";
 import ResumeLangugeService from "../../../../services/resumeLanguageService";
-export default function UpdateResumeLanguageModal({ resumeId, language }) {
+export default function UpdateResumeLanguageModal({ resumeId, id }) {
   const [languages, setLanguages] = useState([]);
   const [open, setOpen] = useState(false);
+
   const [rate, setRate] = useState();
   useEffect(() => {
     let languageService = new LanguageService();
@@ -27,16 +28,10 @@ export default function UpdateResumeLanguageModal({ resumeId, language }) {
   }, []);
 
   const initialValues = {
-    languageId: language.languageId,
-    grade: language.grade,
-    id: language.id,
-    resumeId: resumeId,
+    languageId: "",
   };
   const schema = Yup.object({
     languageId: Yup.string().required("Bu kısım boş geçilemez"),
-    grade: Yup.number().required("Bu kısım boş geçilemez"),
-    id: Yup.number().required("Bu kısım boş geçilemez"),
-    resumeId: Yup.number().required("Bu kısım boş geçilemez"),
   });
   let handleRate = (e, { rating }) => {
     setRate({ rating });
@@ -46,6 +41,7 @@ export default function UpdateResumeLanguageModal({ resumeId, language }) {
     resumeLanguageService
       .updateLanguage(values)
       .catch((err) => console.log(err.message));
+    console.log("ÇALIŞTI");
   };
 
   return (
@@ -55,7 +51,7 @@ export default function UpdateResumeLanguageModal({ resumeId, language }) {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button color="green">
+          <Button color="green" style={{ padding: "7px 7px" }}>
             <Icon name="pencil" />
             Güncelle
           </Button>
@@ -67,10 +63,12 @@ export default function UpdateResumeLanguageModal({ resumeId, language }) {
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
+              console.log("SUBMIT OLDU");
               values.resumeId = resumeId;
+              values.id = id;
               values.grade = rate.rating;
-              updateLanguage(values);
               console.log(values);
+              updateLanguage(values);
             }}
           >
             <Form className="ui form">
@@ -80,7 +78,7 @@ export default function UpdateResumeLanguageModal({ resumeId, language }) {
                     <Segment>
                       <Label attached="top left"> Dil</Label>
                       <KodlamaIoInput as="select" name="languageId">
-                        <option selected hidden></option>
+                        <option hidden>Yeni Bir Dil Seçiniz</option>
                         {languages.map((language) => (
                           <option key={language.id} value={language.id}>
                             {language.languageName}

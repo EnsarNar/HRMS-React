@@ -3,34 +3,26 @@ import { Formik, Form } from "formik"; //Form
 import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
 import * as Yup from "yup";
 import { Button, Grid, Segment, Label, Icon, Modal } from "semantic-ui-react";
-import ResumeExperienceService from "../../../../services/resumeExperienceService";
+import ResumeAccountService from "../../../../services/resumeAccountService";
 import { toast } from "react-toastify";
-
-export default function UpdateResmeExperienceModal({ resumeId, experience }) {
-  const [open, setOpen] = useState(false);
-  const [languages, setLanguages] = useState([]);
-
+import { values } from "lodash";
+export default function UpdateResumeAccountModal({ resumeId, account }) {
   const initialValues = {
-    companyName: experience.companyName,
-    endDate: experience.endDate,
-    position: experience.position,
-    startDate: experience.startDate,
-    id: experience.id,
-    resumeId: resumeId,
+    github: account.github,
+    linkedin: account.linkedin,
   };
   const schema = Yup.object({
-    companyName: Yup.string().required("Bu kısım boi geçilemez"),
-    endDate: Yup.date(),
-    position: Yup.string().required("Bu kısım boi geçilemez"),
-    startDate: Yup.date().required("Bu kısım boi geçilemez"),
+    github: Yup.string().url("Lütfen geçerli bir github hesabı giriniz"),
+    linkedin: Yup.string().url("Lütfen geçerli bir linkedin hesabı giriniz"),
   });
-  let updateExperienceHandler = (values) => {
-    let resumeExperienceService = new ResumeExperienceService();
-    resumeExperienceService
-      .updateExperience(values)
-      .then((result) => toast.success(result.data.message))
+  let updateAccount = (values) => {
+    let resumeAccountService = new ResumeAccountService();
+    resumeAccountService
+      .updateAccount(values)
+      .then((result) => toast.success("İşlem Başarılı"))
       .catch((err) => console.log(err.message));
   };
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <Modal
@@ -44,14 +36,16 @@ export default function UpdateResmeExperienceModal({ resumeId, experience }) {
           </Button>
         }
       >
-        <Modal.Header>İş Tecrübesi Güncelleme Formu</Modal.Header>
+        <Modal.Header>Hesap Bilgisi Güncelleme Formu !</Modal.Header>
         <Modal.Content>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
             onSubmit={(values) => {
+              values.resumeId = resumeId;
+              values.id = account.id;
+              updateAccount(values);
               console.log(values);
-              updateExperienceHandler(values);
             }}
           >
             <Form className="ui form">
@@ -59,33 +53,24 @@ export default function UpdateResmeExperienceModal({ resumeId, experience }) {
                 <Grid.Row>
                   <Grid.Column>
                     <Segment>
-                      <Label attached="top left"> Şirket Adı</Label>
-                      <KodlamaIoInput name="companyName" />
+                      <Label attached="top" color="black">
+                        <Icon name="github" />
+                        Github
+                      </Label>
+                      <KodlamaIoInput name="github" />
                     </Segment>
                   </Grid.Column>
                   <Grid.Column>
                     <Segment>
-                      <Label attached="top left">Pozisyon</Label>
-                      <KodlamaIoInput name="position" />
-                    </Segment>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column>
-                    <Segment>
-                      <Label attached="top left">İşe Başlama Tarihi</Label>
-                      <KodlamaIoInput name="startDate" type="date" />
-                    </Segment>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Segment>
-                      <Label attached="top left">İşten Ayrılma Tarihi</Label>
-                      <KodlamaIoInput name="endDate" type="date" />
+                      <Label attached="top" color="blue">
+                        <Icon name="linkedin" />
+                        Linkedin
+                      </Label>
+                      <KodlamaIoInput name="linkedin" />
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-
               <div style={{ marginLeft: "40em", marginTop: "3em" }}>
                 <Button color="red" onClick={() => setOpen(false)}>
                   <Icon name="window close" />

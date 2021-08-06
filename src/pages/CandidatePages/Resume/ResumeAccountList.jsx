@@ -10,6 +10,7 @@ import {
   Button,
 } from "semantic-ui-react";
 import { unstable_concurrentAct } from "react-dom/cjs/react-dom-test-utils.production.min";
+import UpdateResumeAccountModal from "./update/UpdateResumeAccountModal";
 export default function ResumeAccountList({ id }) {
   const [accounts, setAccounts] = useState([]);
   useEffect(() => {
@@ -32,6 +33,14 @@ export default function ResumeAccountList({ id }) {
 
       {accounts.map((account) => (
         <Grid columns="equal" key={account.id}>
+          <Button color="red" style={{ padding: "7px 7px" }}>
+            <Icon name="trash" />
+            Sil
+          </Button>
+          <UpdateResumeAccountModal
+            resumeId={account.resumeId}
+            account={account}
+          />
           <Grid.Row>
             {account.github ? (
               <Grid.Column textAlign="center">

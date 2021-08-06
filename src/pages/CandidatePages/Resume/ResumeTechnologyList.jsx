@@ -33,7 +33,7 @@ export default function ResumeTechnologyList({ id }) {
       </Grid>
       {technologies.map((tech) => (
         <Grid key={tech.id} columns="equal">
-          <Button color="red">
+          <Button color="red" style={{ padding: "7px 7px" }}>
             <Icon name="trash" />
             Sil
           </Button>

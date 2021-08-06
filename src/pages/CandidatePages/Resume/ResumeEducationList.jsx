@@ -34,7 +34,7 @@ export default function ResumeEducationList({ id }) {
 
       {educations.map((education) => (
         <Grid columns="equal" key={education.id}>
-          <Button color="red" size="small">
+          <Button color="red" style={{ padding: "7px 7px" }}>
             <Icon name="trash" />
             Sil
           </Button>

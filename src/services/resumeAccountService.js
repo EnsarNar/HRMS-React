@@ -9,4 +9,7 @@ export default class ResumeAccountService {
     addAccount(values) {
         return axios.post("http://localhost:8080/api/resumeAccount/add", values)
     }
+    updateAccount(values) {
+        return axios.put("http://localhost:8080/api/resumeAccount/update", values)
+    }
 };

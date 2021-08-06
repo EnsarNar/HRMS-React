@@ -33,7 +33,11 @@ export default function ResumeListForCandidates() {
             {resumes.map((resume) => (
               <Table.Row key={resume.id}>
                 <Table.Cell>
-                  <Image size="mini" src={resume.profilePictureUrl} avatar />
+                  <Image
+                    size="mini"
+                    src="https://res.cloudinary.com/drtniio0r/image/upload/v1624707367/noperson_e8gskq.png"
+                    avatar
+                  />
                 </Table.Cell>
                 <Table.Cell singleLine>{resume.candidateFirstName}</Table.Cell>
                 <Table.Cell singleLine>{resume.candidateLastName}</Table.Cell>

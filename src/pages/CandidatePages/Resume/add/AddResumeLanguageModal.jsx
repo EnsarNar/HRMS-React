@@ -83,9 +83,7 @@ export default function AddResumeLanguageModal({ resumeId }) {
                     <Segment>
                       <Label attached="top left">Dİller</Label>
                       <KodlamaIoInput as="select" name="languageId">
-                        <option selected hidden>
-                          Dil Seçiniz
-                        </option>
+                        <option hidden>Dil Seçiniz</option>
                         {languages.map((language) => (
                           <option key={language.id} value={language.id}>
                             {language.languageName}

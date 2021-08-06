@@ -14,29 +14,37 @@ import {
   Button,
   Image,
   Modal,
-  Segment,
+  Label,
   Grid,
   Icon,
   ModalContent,
   Container,
   Divider,
-  GridColumn,
 } from "semantic-ui-react";
 import ResumeTechnologyList from "./Resume/ResumeTechnologyList";
 import AddResumeTechnologyModal from "./Resume/add/AddResumeTechnologyModal";
-
+import { toast } from "react-toastify";
 export default function SingleResumeForCandidate({ id }) {
   const [open, setOpen] = useState(false);
   const [resumes, setResumes] = useState([]);
   const [isActive, setIsActive] = useState(false);
-
+  let resumeService = new ResumeService();
   useEffect(() => {
-    let resumeService = new ResumeService();
     resumeService
       .getById(id)
       .then((result) => setResumes(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
+  let handleInputFile = (e) => {
+    let data = new FormData();
+    data.append("file", e.target.files[0]);
+    data.append("ResumeId", id);
+
+    resumeService
+      .addPhoto(data)
+      .then((result) => toast.success("Fotoğraf Eklendi !"))
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div>
       <Modal
@@ -59,12 +67,22 @@ export default function SingleResumeForCandidate({ id }) {
             {/* Fundamental Infos */}
             <Grid columns="equal" divided>
               <Grid.Row>
-                <Grid.Column>
-                  <Image
-                    size="small"
-                    src="https://res.cloudinary.com/drtniio0r/image/upload/v1624707367/noperson_e8gskq.png"
-                    wrapped
-                  />
+                <Grid.Column textAlign="center">
+                  <Image size="small" src={resume.profilePictureUrl} wrapped />
+                  <div style={{ marginTop: "1em" }}>
+                    <label htmlFor="inputfile">
+                      <Label color="teal" as="a">
+                        <Icon name="exchange" />
+                        Değiştir
+                      </Label>
+                    </label>
+                    <input
+                      type="file"
+                      className="input-file"
+                      id="inputfile"
+                      onChange={(e) => handleInputFile(e)}
+                    />
+                  </div>
                 </Grid.Column>
                 <Grid.Column textAlign="center">
                   İsim

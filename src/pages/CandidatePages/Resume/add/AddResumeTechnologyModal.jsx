@@ -12,7 +12,7 @@ import {
 } from "semantic-ui-react";
 import KodlamaIoInput from "../../../../utilities/customFormControls/KodlamaIoInput";
 import ResumeTechnologyService from "../../../../services/resumeTechnologyService";
-import { Formik, Form, Field } from "formik"; //Form
+import { Formik, Form } from "formik"; //Form
 import * as Yup from "yup";
 
 export default function AddResumeTechnologyModal({ resumeId }) {
@@ -41,7 +41,20 @@ export default function AddResumeTechnologyModal({ resumeId }) {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button style={{ marginLeft: "48%" }} color="olive" icon="add" />
+          <Button
+            animated="vertical"
+            style={{
+              padding: "7px 7px",
+              background: " linear-gradient(to right, #ffe000, #799f0c)",
+            }}
+          >
+            <Button.Content visible style={{ paddingLeft: "1em" }}>
+              Ekle
+            </Button.Content>
+            <Button.Content hidden>
+              <Icon name="plus" />
+            </Button.Content>
+          </Button>
         }
       >
         <Modal.Header>Teknoloji Ekleme Formu</Modal.Header>

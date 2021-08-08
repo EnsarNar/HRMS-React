@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Grid } from "semantic-ui-react";
+import Footer from "../components/Footer/Footer";
 export default function HomePage() {
   return (
     <div>
@@ -23,7 +24,9 @@ export default function HomePage() {
           </Grid>
         </div>
       </div>
-      Footer
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

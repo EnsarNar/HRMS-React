@@ -20,8 +20,16 @@ export default function CandidateSidebar() {
   };
   return (
     <div>
-      <Grid padded>
-        <Grid.Column computer={3} only="computer" id="sidebar">
+      <Grid>
+        <Grid.Column
+          computer={3}
+          only="computer"
+          id="sidebar"
+          padded
+          style={{
+            background: "linear-gradient(to left, #d3cce3, #e9e4f0)",
+          }}
+        >
           <Menu vertical borderless fluid text>
             <label>
               <Menu.Item as={NavLink} to="/candidate/getAllAdverts">

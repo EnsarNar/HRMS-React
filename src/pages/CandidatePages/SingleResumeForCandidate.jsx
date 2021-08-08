@@ -38,10 +38,9 @@ export default function SingleResumeForCandidate({ id }) {
   let handleInputFile = (e) => {
     let data = new FormData();
     data.append("file", e.target.files[0]);
-    data.append("ResumeId", id);
 
     resumeService
-      .addPhoto(data)
+      .addPhoto(data, id)
       .then((result) => toast.success("Fotoğraf Eklendi !"))
       .catch((err) => console.log(err.message));
   };
@@ -52,7 +51,13 @@ export default function SingleResumeForCandidate({ id }) {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <Button color="green" animated="fade">
+          <Button
+            style={{
+              background:
+                "linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb)",
+            }}
+            animated="fade"
+          >
             <Button.Content visible>Detaylar</Button.Content>
             <Button.Content hidden>
               <Icon name="mouse pointer" />
@@ -71,7 +76,13 @@ export default function SingleResumeForCandidate({ id }) {
                   <Image size="small" src={resume.profilePictureUrl} wrapped />
                   <div style={{ marginTop: "1em" }}>
                     <label htmlFor="inputfile">
-                      <Label color="teal" as="a">
+                      <Label
+                        style={{
+                          background:
+                            "linear-gradient(to right, #2193b0, #6dd5ed)",
+                        }}
+                        as="a"
+                      >
                         <Icon name="exchange" />
                         Değiştir
                       </Label>
@@ -134,12 +145,16 @@ export default function SingleResumeForCandidate({ id }) {
               <Grid columns="equal">
                 {console.log(!resume.coverLetter)}
                 <Grid.Row>
-                  <Grid.Column>
+                  <Grid.Column textAlign="center">
                     {!resume.coverLetter > 0 ? (
+                      // <Container textAlign="center" className=" margin-bottom">
+                      // <h1 className="opacity"> Hiçbir ön yazı bulunamadı :(</h1>
+                      // </Container>
                       <Button
                         animated="vertical"
                         color="green"
                         style={{ marginBottom: "1em", padding: "7px 7px" }}
+                        onClick={() => setIsActive(true)}
                       >
                         <Button.Content visible style={{ paddingLeft: "1em" }}>
                           Ekle
@@ -178,10 +193,10 @@ export default function SingleResumeForCandidate({ id }) {
 
           <Grid>
             <Grid.Row>
-              <Container>
+              <Grid.Column textAlign="center">
                 {/* Buton getiriyor */}
                 <AddResumeEducationModal resumeId={id} />
-              </Container>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </ModalContent>
@@ -190,9 +205,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeLanguageList id={id} />
           <Grid>
             <Grid.Row>
-              <Container>
+              <Grid.Column textAlign="center">
                 <AddResumeLanguageModal resumeId={id} />
-              </Container>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </ModalContent>
@@ -201,9 +216,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeTechnologyList id={id} />
           <Grid>
             <Grid.Row>
-              <Container>
+              <Grid.Column textAlign="center">
                 <AddResumeTechnologyModal resumeId={id} />
-              </Container>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </ModalContent>
@@ -212,9 +227,9 @@ export default function SingleResumeForCandidate({ id }) {
           <ResumeExperienceList id={id} />
           <Grid>
             <Grid.Row>
-              <Container>
+              <Grid.Column textAlign="center">
                 <AddResumeExperienceModal resumeId={id} />
-              </Container>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </ModalContent>
@@ -224,24 +239,18 @@ export default function SingleResumeForCandidate({ id }) {
 
           <Grid>
             <Grid.Row>
-              <Container>
+              <Grid.Column textAlign="center">
                 <AddResumeAccountModal resumeId={id} />
-              </Container>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </ModalContent>
 
         <Modal.Actions>
           <Button color="black" onClick={() => setOpen(false)}>
+            <Icon name="close" />
             Çık
           </Button>
-          <Button
-            content="Kaydet"
-            labelPosition="right"
-            icon="checkmark"
-            onClick={() => setOpen(false)}
-            positive
-          />
         </Modal.Actions>
       </Modal>
     </div>

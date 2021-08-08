@@ -8,6 +8,7 @@ import {
   Rating,
   Button,
   Icon,
+  Container,
 } from "semantic-ui-react";
 import UpdateResumeTechnologiesModal from "./update/UpdateResumeTechnologiesModal";
 export default function ResumeTechnologyList({ id }) {
@@ -31,40 +32,48 @@ export default function ResumeTechnologyList({ id }) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      {technologies.map((tech) => (
-        <Grid key={tech.id} columns="equal">
-          <Button color="red" style={{ padding: "7px 7px" }}>
-            <Icon name="trash" />
-            Sil
-          </Button>
-          <UpdateResumeTechnologiesModal
-            resumeId={tech.resumeId}
-            technology={tech}
-          />
-          <Grid.Row>
-            <Grid.Column textAlign="center">
-              <Segment style={{ height: "95px" }} padded>
-                <Label attached="top left">Teknoloji</Label>
-                {tech.programmingLanguageName}
-              </Segment>
-            </Grid.Column>
+      {technologies.length === 0 ? (
+        <Container textAlign="center" className="margin-top margin-bottom">
+          <h1 className="opacity"> Hiçbir teknoıloji bilgisi bulunamadı :(</h1>
+        </Container>
+      ) : (
+        <Container>
+          {technologies.map((tech) => (
+            <Grid key={tech.id} columns="equal">
+              <Button color="red" style={{ padding: "7px 7px" }}>
+                <Icon name="trash" />
+                Sil
+              </Button>
+              <UpdateResumeTechnologiesModal
+                resumeId={tech.resumeId}
+                technology={tech}
+              />
+              <Grid.Row>
+                <Grid.Column textAlign="center">
+                  <Segment style={{ height: "95px" }} padded>
+                    <Label attached="top left">Teknoloji</Label>
+                    {tech.programmingLanguageName}
+                  </Segment>
+                </Grid.Column>
 
-            <Grid.Column textAlign="center">
-              <Segment padded>
-                <Label attached="top left">Seviye</Label>
+                <Grid.Column textAlign="center">
+                  <Segment padded>
+                    <Label attached="top left">Seviye</Label>
 
-                <Rating
-                  maxRating={5}
-                  defaultRating={tech.grade}
-                  icon="star"
-                  size="huge"
-                  disabled
-                />
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      ))}
+                    <Rating
+                      maxRating={5}
+                      defaultRating={tech.grade}
+                      icon="star"
+                      size="huge"
+                      disabled
+                    />
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          ))}
+        </Container>
+      )}
     </div>
   );
 }

@@ -17,8 +17,10 @@ export default function ResumeAdd() {
         <Segment vertical>
           <Grid stackable className="main">
             <Grid.Column width={10}>
-              <Header as="h1">
-                Hızlı Bir Şekilde İş mi Bulmak İstiyorsun ? O zaman dinle !
+              <Header>
+                <h1>
+                  Hızlı Bir Şekilde İş mi Bulmak İstiyorsun ? O zaman dinle!
+                </h1>
               </Header>
               <p className="font" style={{ fontSize: "1.5em" }}>
                 Birçok aday arasından sıyrılıp öne çıkmak için etkili bir CV
@@ -36,7 +38,9 @@ export default function ResumeAdd() {
               <Image src="https://nimbleinfosys.com/img/products/hrms/hrm_banner.png" />
             </Grid.Column>
             <Grid.Column width={10}>
-              <Header as="h1">Etkili Bir CV Nasıl mı Hazırlanır ?</Header>
+              <Header>
+                <h1>Etkili Bir CV Nasıl mı Hazırlanır ?</h1>
+              </Header>
               <p className="font" style={{ fontSize: "1.5em" }}>
                 Etkili bir CV hazırlamak için yapman gereken tek şey gerçekçi
                 olmak ve eksiksiz bir şekilde bilgileri doldurmak. Üstelik merak

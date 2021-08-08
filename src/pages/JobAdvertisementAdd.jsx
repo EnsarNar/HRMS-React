@@ -87,7 +87,7 @@ export default function JobAdvertisementAdd() {
 
   return (
     <div>
-      <h4>Job Advertisement Adding Form</h4>
+      <h2 className="opacity">Job Advertisement Adding Form</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}

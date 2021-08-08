@@ -16,7 +16,11 @@ export default function ResumeListForCandidates() {
   return (
     <div>
       {resumes.length === 0 ? (
-        <p>There isn't any resume</p>
+        <div>
+          <h1 style={{ opacity: "0.5" }}>OOPS !</h1>
+          <h2 style={{ opacity: "0.5" }}>There isn't any resume :( </h2>
+          {/* Yukarıdaki parantez üzgün suratın ağtı kafalar karışmasın :D */}
+        </div>
       ) : (
         <Table celled padded>
           <Table.Header>
@@ -33,11 +37,7 @@ export default function ResumeListForCandidates() {
             {resumes.map((resume) => (
               <Table.Row key={resume.id}>
                 <Table.Cell>
-                  <Image
-                    size="mini"
-                    src="https://res.cloudinary.com/drtniio0r/image/upload/v1624707367/noperson_e8gskq.png"
-                    avatar
-                  />
+                  <Image size="mini" src={resume.profilePictureUrl} avatar />
                 </Table.Cell>
                 <Table.Cell singleLine>{resume.candidateFirstName}</Table.Cell>
                 <Table.Cell singleLine>{resume.candidateLastName}</Table.Cell>

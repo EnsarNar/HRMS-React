@@ -48,7 +48,7 @@ export default function UpdateResumeCoverLetter(
               <Icon name="upload" />
             </Button.Content>
             <Button.Content visible style={{ paddingLeft: "1em" }}>
-              Güncelle
+              Kaydet
             </Button.Content>
           </Button>
           <Grid>

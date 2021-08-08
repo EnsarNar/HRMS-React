@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, Menu } from "semantic-ui-react";
 import CandidateCartSummary from "../../pages/CandidatePages/Cart/CandidateCartSummary";
-import { useSelector } from "react-redux";
 
 export default function CandidateNavi() {
   // const { favoriteItems } = useSelector((state) => state.favorites);
@@ -9,7 +8,14 @@ export default function CandidateNavi() {
   return (
     <div>
       <Grid padded>
-        <Menu borderless inverted fluid fixed="top" size="mini">
+        <Menu
+          borderless
+          style={{
+            background: "linear-gradient(to right, #e0eafc, #cfdef3)",
+          }}
+          fixed="top"
+          size="mini"
+        >
           <Menu.Item header>HRMS</Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>

@@ -8,8 +8,9 @@ import {
   Icon,
   Popup,
   Button,
+  Container,
 } from "semantic-ui-react";
-import { unstable_concurrentAct } from "react-dom/cjs/react-dom-test-utils.production.min";
+
 import UpdateResumeAccountModal from "./update/UpdateResumeAccountModal";
 export default function ResumeAccountList({ id }) {
   const [accounts, setAccounts] = useState([]);
@@ -30,50 +31,57 @@ export default function ResumeAccountList({ id }) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      {accounts.length === 0 ? (
+        <Container textAlign="center" className="margin-top margin-bottom">
+          <h1 className="opacity"> Hiçbir hesap bilgisi bulunamadı :(</h1>
+        </Container>
+      ) : (
+        <Container>
+          {accounts.map((account) => (
+            <Grid columns="equal" key={account.id}>
+              <Button color="red" style={{ padding: "7px 7px" }}>
+                <Icon name="trash" />
+                Sil
+              </Button>
+              <UpdateResumeAccountModal
+                resumeId={account.resumeId}
+                account={account}
+              />
+              <Grid.Row>
+                {account.github ? (
+                  <Grid.Column textAlign="center">
+                    <Button
+                      color="black"
+                      target="_blank"
+                      href={account.github}
+                      fluid
+                    >
+                      <Icon name="github" />
+                      Github
+                    </Button>
+                  </Grid.Column>
+                ) : null}
+                {account.linkedin ? (
+                  <Grid.Column textAlign="center">
+                    <Button
+                      color="linkedin"
+                      target="_blank"
+                      href={account.linkedin}
+                      fluid
+                    >
+                      <Icon name="linkedin" />
+                      Linkedin
+                    </Button>
+                  </Grid.Column>
+                ) : null}
 
-      {accounts.map((account) => (
-        <Grid columns="equal" key={account.id}>
-          <Button color="red" style={{ padding: "7px 7px" }}>
-            <Icon name="trash" />
-            Sil
-          </Button>
-          <UpdateResumeAccountModal
-            resumeId={account.resumeId}
-            account={account}
-          />
-          <Grid.Row>
-            {account.github ? (
-              <Grid.Column textAlign="center">
-                <Button
-                  color="black"
-                  target="_blank"
-                  href={account.github}
-                  fluid
-                >
-                  <Icon name="github" />
-                  Github
-                </Button>
-              </Grid.Column>
-            ) : null}
-            {account.linkedin ? (
-              <Grid.Column textAlign="center">
-                <Button
-                  color="linkedin"
-                  target="_blank"
-                  href={account.linkedin}
-                  fluid
-                >
-                  <Icon name="linkedin" />
-                  Linkedin
-                </Button>
-              </Grid.Column>
-            ) : null}
-
-            {/* Yen bir şey eklenecegi zaman grid.column ekle yeni bir tane */}
-          </Grid.Row>
-          <Divider />
-        </Grid>
-      ))}
+                {/* Yen bir şey eklenecegi zaman grid.column ekle yeni bir tane */}
+              </Grid.Row>
+              <Divider />
+            </Grid>
+          ))}
+        </Container>
+      )}
     </div>
   );
 }

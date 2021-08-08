@@ -7,6 +7,7 @@ import {
   Icon,
   Popup,
   Button,
+  Container,
 } from "semantic-ui-react";
 import ResumEducationService from "../../../services/resumeEducationService";
 import UpdateResumeEducationModal from "./update/UpdateResumeEducationModal.jsx";
@@ -31,58 +32,66 @@ export default function ResumeEducationList({ id }) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      {educations.length === 0 ? (
+        <Container textAlign="center" className="margin-top margin-bottom">
+          <h1 className="opacity"> Hiçbir eğitim bilgisi bulunamadı :(</h1>
+        </Container>
+      ) : (
+        <Container>
+          {educations.map((education) => (
+            <Grid columns="equal" key={education.id}>
+              {console.log(education)}
+              <Button color="red" style={{ padding: "7px 7px" }}>
+                <Icon name="trash" />
+                Sil
+              </Button>
+              {/* Güncelleme Modali */}
+              <UpdateResumeEducationModal
+                resumeId={education.resumeId}
+                education={education}
+              />
+              <Grid.Row>
+                <Grid.Column textAlign="center">
+                  <Segment padded>
+                    <Label attached="top left">Okul</Label>
 
-      {educations.map((education) => (
-        <Grid columns="equal" key={education.id}>
-          <Button color="red" style={{ padding: "7px 7px" }}>
-            <Icon name="trash" />
-            Sil
-          </Button>
-          {/* Güncelleme Modali */}
-          <UpdateResumeEducationModal
-            resumeId={education.resumeId}
-            education={education}
-          />
-          <Grid.Row>
-            <Grid.Column textAlign="center">
-              <Segment padded>
-                <Label attached="top left">Okul</Label>
+                    {education.schoolName}
+                  </Segment>
+                </Grid.Column>
+                <Grid.Column textAlign="center">
+                  <Segment padded>
+                    <Label attached="top left">Bölüm</Label>
+                    {education.departmentName}
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column textAlign="center">
+                  <Segment padded>
+                    <Label attached="top left">Okula Başlama Tarihi</Label>
+                    {education.startingDate}
+                  </Segment>
+                </Grid.Column>
+                <Grid.Column textAlign="center">
+                  {!education.graduateDate ? (
+                    <Segment padded>
+                      <Label attached="top left">Mezuniyet Tarihi</Label>
+                      <p>Devam ediyor...</p>
+                    </Segment>
+                  ) : (
+                    <Segment padded>
+                      <Label attached="top left">Mezuniyet Tarihi</Label>
+                      {education.graduateDate}
+                    </Segment>
+                  )}
+                </Grid.Column>
+              </Grid.Row>
 
-                {education.schoolName}
-              </Segment>
-            </Grid.Column>
-            <Grid.Column textAlign="center">
-              <Segment padded>
-                <Label attached="top left">Bölüm</Label>
-                {education.departmentName}
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column textAlign="center">
-              <Segment padded>
-                <Label attached="top left">Okula Başlama Tarihi</Label>
-                {education.startingDate}
-              </Segment>
-            </Grid.Column>
-            <Grid.Column textAlign="center">
-              {!education.graduateDate ? (
-                <Segment padded>
-                  <Label attached="top left">Mezuniyet Tarihi</Label>
-                  <p>Devam ediyor...</p>
-                </Segment>
-              ) : (
-                <Segment padded>
-                  <Label attached="top left">Mezuniyet Tarihi</Label>
-                  {education.graduateDate}
-                </Segment>
-              )}
-            </Grid.Column>
-          </Grid.Row>
-
-          <Divider />
-        </Grid>
-      ))}
+              <Divider />
+            </Grid>
+          ))}
+        </Container>
+      )}
     </div>
   );
 }

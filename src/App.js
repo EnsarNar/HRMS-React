@@ -6,6 +6,7 @@ import AdminDashboard from "../src/components/Dashboard/AdminDashboard"
 import HomePage from './pages/HomePage';
 import { Route } from "react-router-dom"
 import AccordionTest from './pages/AccordionTest';
+import DenemeComponent from './DenemeComponent';
 
 
 
@@ -19,6 +20,7 @@ function App() {
       {/* <Route exact path="/home" component={HomePage} /> */}
       <Route exact path="/" component={HomePage} />
       <Route exact path="/accordion" component={AccordionTest} />
+      <Route exact path="/deneme" component={DenemeComponent} />
 
 
 

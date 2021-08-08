@@ -20,9 +20,8 @@ export default class ResumeService {
     getResumesByCandidateId(id) {
         return axios.get(`http://localhost:8080/api/resume/getByCandidateId?id${id}`);
     }
-    addPhoto(photo) {
-        return axios.post(`http://localhost:8080/api/resume/addPhoto?id=${photo.id}`, photo)
-        // return axios.post("http://localhost:8080/api/resume/addPhoto", photo)
+    addPhoto(data, id) {
+        return axios.put(`http://localhost:8080/api/resume/addPhoto?id=${id}`, data);
     }
 
 

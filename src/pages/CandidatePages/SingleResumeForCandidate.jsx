@@ -159,6 +159,7 @@ export default function SingleResumeForCandidate({ id }) {
                         <Button.Content visible style={{ paddingLeft: "1em" }}>
                           Ekle
                         </Button.Content>
+
                         <Button.Content hidden>
                           <Icon name="plus" />
                         </Button.Content>

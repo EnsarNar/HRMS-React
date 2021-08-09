@@ -9,7 +9,7 @@ import JobAdvertisementDetailsForCandidates from "../../pages/CandidatePages/Job
 import CompulsoryResumeAdd from "../../pages/CandidatePages/CompulsoryResumeAdd";
 import { ToastContainer } from "react-toastify";
 import ResumeListForCandidates from "../../pages/CandidatePages/ResumeListForCandidates";
-import SingleResumeForCandidate from "../../pages/CandidatePages/SingleResumeForCandidate";
+
 export default function CandidateDashboard() {
   return (
     <div>

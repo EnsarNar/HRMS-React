@@ -30,7 +30,7 @@ export default function CandidateSidebar() {
             background: "linear-gradient(to left, #d3cce3, #e9e4f0)",
           }}
         >
-          <Menu vertical borderless fluid text>
+          <Menu text fluid vertical borderless>
             <label>
               <Menu.Item as={NavLink} to="/candidate/getAllAdverts">
                 <Icon name="list" />

@@ -31,7 +31,6 @@ export default function UpdateResumeCoverLetter(
         validationSchema={schema}
         onSubmit={(values) => {
           values.resumeId = props.resumeId;
-          values.id = props.coverLetter.id;
           updateCoverLetter(values);
           console.log(values);
           props.changeIsActive(false);

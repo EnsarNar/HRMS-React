@@ -12,16 +12,10 @@ export default function ResumeListForCandidates() {
       .getResumes() //ileride getByCandidateId kullanılacak
       .then((result) => setResumes(result.data.data))
       .catch((err) => console.log(err.messaage));
-  }, []);
+  }, [resumes.length]);
   return (
     <div>
-      {resumes.length === 0 ? (
-        <div>
-          <h1 style={{ opacity: "0.5" }}>OOPS !</h1>
-          <h2 style={{ opacity: "0.5" }}>There isn't any resume :( </h2>
-          {/* Yukarıdaki parantez üzgün suratın ağtı kafalar karışmasın :D */}
-        </div>
-      ) : (
+      {resumes.length > 0 && (
         <Table celled padded>
           <Table.Header>
             <Table.Row>

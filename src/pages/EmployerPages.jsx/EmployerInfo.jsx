@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Table,
   Icon,
@@ -6,27 +6,34 @@ import {
   Button,
   Image,
   Reveal,
+  Grid,
 } from "semantic-ui-react";
 export default function EmployerInfo() {
+  const imageRef = useRef();
   return (
     <div>
       <h1 className="opacity">Kişisel Bilgiler</h1>
-      {/* <label htmlFor="profilepicture"> */}
-      <div className="container">
-        <Image
-          src="http://res.cloudinary.com/ddjzhbvp4/image/upload/v1628367278/aihp1s13zwryrrmupeuv.jpg"
-          wrapped
-          size="medium"
-          circular
-        />
-      </div>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column textAlign="center">
+            <Image
+              className="image-upload"
+              src="http://res.cloudinary.com/ddjzhbvp4/image/upload/v1628367278/aihp1s13zwryrrmupeuv.jpg"
+              wrapped
+              size="medium"
+              circular
+              onClick={() => imageRef.current.click()}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
 
-      <div class="overlay">
-        <div class="text">Hello World</div>
-      </div>
-      {/* </label> */}
-
-      <input type="file" id="profilepicture" className="input-file" />
+      <input
+        ref={imageRef}
+        type="file"
+        id="profilepicture"
+        className="input-file"
+      />
 
       <Container
         style={{ width: "85%", height: "60vh" }}
@@ -39,7 +46,10 @@ export default function EmployerInfo() {
                 <Icon name="mail" />
                 Email
               </Table.Cell>
-              <Table.Cell textAlign="center"> xxx.hotmail.com</Table.Cell>
+              <Table.Cell textAlign="center" disabled>
+                {" "}
+                xxx.hotmail.com
+              </Table.Cell>
               <Table.Cell textAlign="right">
                 <Button
                   style={{
@@ -66,7 +76,10 @@ export default function EmployerInfo() {
                 <Icon name="phone" />
                 Telefon
               </Table.Cell>
-              <Table.Cell textAlign="center"> +YY XXX XXX XXXX</Table.Cell>
+              <Table.Cell textAlign="center" disabled>
+                {" "}
+                +YY XXX XXX XXXX
+              </Table.Cell>
               <Table.Cell textAlign="right">
                 <Button
                   style={{
@@ -93,7 +106,10 @@ export default function EmployerInfo() {
                 <Icon name="bolt" />
                 Şifre
               </Table.Cell>
-              <Table.Cell textAlign="center"> +YY XXX XXX XXXX</Table.Cell>
+              <Table.Cell textAlign="center" disabled>
+                {" "}
+                +YY XXX XXX XXXX
+              </Table.Cell>
               <Table.Cell textAlign="right">
                 <Button
                   style={{
@@ -120,7 +136,10 @@ export default function EmployerInfo() {
                 <Icon name="external alternate" />
                 Web Adress
               </Table.Cell>
-              <Table.Cell textAlign="center"> +YY XXX XXX XXXX</Table.Cell>
+              <Table.Cell textAlign="center" disabled>
+                {" "}
+                +YY XXX XXX XXXX
+              </Table.Cell>
               <Table.Cell textAlign="right">
                 <Button
                   style={{

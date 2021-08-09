@@ -16,7 +16,7 @@ label {
 
 #sidebar {
   position: fixed;
-  height: 100vh;
+  height: 120%;
   background-color: #f5f5f5;
   padding-top: 68px;
   padding-left: 0;
@@ -98,7 +98,7 @@ label {
 .margin-left-zero {
   margin-left: 0%;
 }
-.text {
+/* .text {
   color: white;
   font-size: 20px;
   position: absolute;
@@ -108,7 +108,7 @@ label {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
-}
+} */
 .overlay {
   position: absolute;
   top: 0;
@@ -124,4 +124,27 @@ label {
 .container {
   position: relative;
   width: 50%;
+}
+.menu.secondary.vertical.text {
+  margin-top: 10px !important;
+}
+.image-upload {
+  position: relative;
+  cursor: pointer;
+  transition: 0.1s ease opacity;
+}
+.image-upload:hover {
+  opacity: 0.2;
+}
+.image-upload:hover::after {
+  content: "+";
+  transition: 0.1s ease opacity;
+  font-size: 50px;
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  top: 60px;
+  right: 135px;
+  position: absolute;
+  display: inline-block;
 }

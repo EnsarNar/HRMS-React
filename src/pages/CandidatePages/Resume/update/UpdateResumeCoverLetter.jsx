@@ -38,6 +38,12 @@ export default function UpdateResumeCoverLetter(
       >
         <Form className="ui form">
           <Button
+            color="red"
+            style={{ marginBottom: "0.3em", padding: "7px 7px" }}
+          >
+            İptal
+          </Button>
+          <Button
             animated="vertical"
             type="submit"
             color="instagram"

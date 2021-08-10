@@ -24,10 +24,10 @@ import {
 import ResumeTechnologyList from "./Resume/ResumeTechnologyList";
 import AddResumeTechnologyModal from "./Resume/add/AddResumeTechnologyModal";
 import { toast } from "react-toastify";
+import AddResumeCoverLetterModal from "./Resume/add/AddResumeCoverLetterModal";
 export default function SingleResumeForCandidate({ id }) {
   const [open, setOpen] = useState(false);
   const [resumes, setResumes] = useState([]);
-  const [isActive, setIsActive] = useState(false);
   let resumeService = new ResumeService();
   useEffect(() => {
     resumeService
@@ -66,7 +66,6 @@ export default function SingleResumeForCandidate({ id }) {
         }
       >
         <Modal.Header>Özgeçmiş</Modal.Header>
-
         {resumes.map((resume) => (
           <Modal.Content key={resume.id}>
             {/* Fundamental Infos */}
@@ -105,89 +104,27 @@ export default function SingleResumeForCandidate({ id }) {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-            {/* Cover Letter */}
-            <Grid columns="equal" divided>
-              <Grid.Row>
-                <Grid.Column textAlign="center">
-                  <Divider />
-                  <h3>Ön Yazı</h3>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-
-            {isActive ? (
-              <Grid columns="equal">
-                <Grid.Row>
-                  <Grid.Column>
-                    <Button
-                      animated="vertical"
-                      onClick={() => setIsActive(false)}
-                      color="red"
-                      style={{ marginBottom: "1em", padding: "7px 7px" }}
-                    >
-                      <Button.Content visible style={{ paddingLeft: "1em" }}>
-                        İptal
-                      </Button.Content>
-                      <Button.Content hidden>
-                        <Icon name="close" />
-                      </Button.Content>
-                    </Button>
-
-                    <UpdateResumeCoverLetter
-                      changeIsActive={(value) => setIsActive(value)}
-                      resumeId={resume.id}
-                      coverLetter={resume.coverLetter}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            ) : (
-              <Grid columns="equal">
-                {console.log(!resume.coverLetter)}
-                <Grid.Row>
-                  <Grid.Column textAlign="center">
-                    {!resume.coverLetter > 0 ? (
-                      // <Container textAlign="center" className=" margin-bottom">
-                      // <h1 className="opacity"> Hiçbir ön yazı bulunamadı :(</h1>
-                      // </Container>
-                      <Button
-                        animated="vertical"
-                        color="green"
-                        style={{ marginBottom: "1em", padding: "7px 7px" }}
-                        onClick={() => setIsActive(true)}
-                      >
-                        <Button.Content visible style={{ paddingLeft: "1em" }}>
-                          Ekle
-                        </Button.Content>
-
-                        <Button.Content hidden>
-                          <Icon name="plus" />
-                        </Button.Content>
-                      </Button>
-                    ) : (
-                      <Button
-                        animated="vertical"
-                        onClick={() => setIsActive(true)}
-                        color="green"
-                        style={{ marginBottom: "1em", padding: "7px 7px" }}
-                      >
-                        <Button.Content visible style={{ paddingLeft: "1em" }}>
-                          Güncelle
-                        </Button.Content>
-                        <Button.Content hidden>
-                          <Icon name="pencil" />
-                        </Button.Content>
-                      </Button>
-                    )}
-
-                    <ResumeCoverLetterList id={id} />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            )}
           </Modal.Content>
         ))}
-
+        <ModalContent>
+          {/* Cover Letter */}
+          <Grid columns="equal" divided>
+            <Grid.Row>
+              <Grid.Column textAlign="center">
+                <Divider />
+                <h3>Ön Yazı</h3>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <ResumeCoverLetterList id={id} />
+          <Grid>
+            <Grid.Row>
+              <Grid.Column textAlign="center">
+                <AddResumeCoverLetterModal />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </ModalContent>
         {/* Resume Education List */}
         <ModalContent>
           <ResumeEducationList id={id} />
@@ -246,7 +183,6 @@ export default function SingleResumeForCandidate({ id }) {
             </Grid.Row>
           </Grid>
         </ModalContent>
-
         <Modal.Actions>
           <Button color="black" onClick={() => setOpen(false)}>
             <Icon name="close" />

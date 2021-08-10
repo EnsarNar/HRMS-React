@@ -13,7 +13,8 @@ export default function EmployerInfo() {
   return (
     <div>
       <h1 className="opacity">Kişisel Bilgiler</h1>
-      <Grid>
+      {/* İleride şirket logosu olursa bu kod çalıştırılacak */}
+      {/* <Grid>
         <Grid.Row>
           <Grid.Column textAlign="center">
             <Image
@@ -26,7 +27,7 @@ export default function EmployerInfo() {
             />
           </Grid.Column>
         </Grid.Row>
-      </Grid>
+      </Grid> */}
 
       <input
         ref={imageRef}

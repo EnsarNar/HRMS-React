@@ -1,18 +1,36 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
+
 import {
   Table,
   Icon,
   Container,
   Button,
-  Image,
-  Reveal,
+  Divider,
   Grid,
 } from "semantic-ui-react";
+import EmployerService from "../../services/employerService";
 export default function EmployerInfo() {
+  const [employers, setEmployers] = useState([]);
+  //Bu kısım ileride JWT ile düzeltilecek
+  useEffect(() => {
+    let employerService = new EmployerService();
+    employerService
+      .getEmployerById(6)
+      .then((result) => setEmployers(result.data.data))
+      .catch((err) => console.log(err.message));
+  }, []);
   const imageRef = useRef();
   return (
     <div>
       <h1 className="opacity">Kişisel Bilgiler</h1>
+      <Divider />
+      {employers.map((employer) => (
+        <Grid>
+          <Grid.Row>
+            <Grid.Column textAlign="center">{employer.companyName}</Grid.Column>
+          </Grid.Row>
+        </Grid>
+      ))}
       {/* İleride şirket logosu olursa bu kod çalıştırılacak */}
       {/* <Grid>
         <Grid.Row>
@@ -29,13 +47,19 @@ export default function EmployerInfo() {
         </Grid.Row>
       </Grid> */}
 
-      <input
+      {/* <input
         ref={imageRef}
         type="file"
         id="profilepicture"
         className="input-file"
-      />
-
+      /> */}
+      <Grid>
+        <Grid.Row>
+          <Grid.Column textAlign="center">
+            <h2 className="opacity"> ~Microsoft~</h2>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
       <Container
         style={{ width: "85%", height: "60vh" }}
         className="margin-top"

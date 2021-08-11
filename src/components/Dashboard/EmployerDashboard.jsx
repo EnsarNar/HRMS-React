@@ -5,7 +5,7 @@ import JobAdvertisementAdd from "../../pages/JobAdvertisementAdd";
 import { Container, Grid } from "semantic-ui-react";
 import { Route } from "react-router";
 import deneme from "../../pages/deneme";
-import EmployerInfo from "../../pages/EmployerPages.jsx/EmployerInfo";
+import EmployerInfo from "../../pages/EmployerPages.jsx/EmployerInformations/EmployerInfo";
 export default function EmployerDashboard() {
   return (
     <div>

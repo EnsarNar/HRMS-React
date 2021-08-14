@@ -148,3 +148,8 @@ label {
   position: absolute;
   display: inline-block;
 }
+
+.save-button {
+  padding: 7px 7px !important;
+  background: linear-gradient(to right, #00b4db, #51595c) !important;
+}

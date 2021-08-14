@@ -35,6 +35,7 @@ export default function EmployerInfo() {
           className="margin-top"
           key={employer.id}
         >
+          {console.log(employer)}
           <Grid>
             <Grid.Row>
               <Grid.Column textAlign="center">
@@ -52,7 +53,7 @@ export default function EmployerInfo() {
                 </Table.Cell>
                 <Table.Cell textAlign="center">
                   {updateProcess === "updateEmail" ? (
-                    <UpdateEmployerEmail />
+                    <UpdateEmployerEmail employer={employer} />
                   ) : (
                     <p>{employer.email}</p>
                   )}

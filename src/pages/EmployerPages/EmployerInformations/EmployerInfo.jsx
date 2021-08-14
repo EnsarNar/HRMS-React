@@ -20,7 +20,7 @@ export default function EmployerInfo() {
   useEffect(() => {
     let employerService = new EmployerService();
     employerService
-      .getEmployerById(6)
+      .getEmployerById(28)
       .then((result) => setEmployers(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);

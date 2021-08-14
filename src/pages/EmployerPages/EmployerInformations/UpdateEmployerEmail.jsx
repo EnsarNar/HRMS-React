@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import KodlamaIoInput from "../../../utilities/customFormControls/KodlamaIoInput";
 import EmployerService from "../../../services/employerService";
 import { toast } from "react-toastify";
@@ -32,7 +32,7 @@ export default function UpdateEmployerEmail({ employer }) {
     employerService
       .updatEmployer(values)
       .then((result) => toast.success(result.data.message))
-      .catch((data) => toast.error(data.message));
+      .catch((err) => console.log(err.message));
   };
   return (
     <div>
@@ -47,6 +47,7 @@ export default function UpdateEmployerEmail({ employer }) {
         <Form className="ui form">
           <KodlamaIoInput name="email" placeholder="Yeni bir E-Mail" />
           <Button className="save-button" type="submit">
+            <Icon name="check" />
             Kaydet
           </Button>
         </Form>

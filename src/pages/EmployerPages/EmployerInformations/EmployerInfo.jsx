@@ -20,7 +20,7 @@ export default function EmployerInfo() {
   useEffect(() => {
     let employerService = new EmployerService();
     employerService
-      .getEmployerById(28)
+      .getEmployerById(30)
       .then((result) => setEmployers(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);
@@ -136,7 +136,7 @@ export default function EmployerInfo() {
                 </Table.Cell>
                 <Table.Cell textAlign="center">
                   {updateProcess === "updatePassword" ? (
-                    <UpdateEmployerPassword />
+                    <UpdateEmployerPassword employer={employer} />
                   ) : (
                     <p>{employer.password}</p>
                   )}

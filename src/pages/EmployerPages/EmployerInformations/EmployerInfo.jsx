@@ -95,7 +95,7 @@ export default function EmployerInfo() {
                 </Table.Cell>
                 <Table.Cell textAlign="center">
                   {updateProcess === "updatePhoneNumber" ? (
-                    <UpdateEmployerPhoneNumber />
+                    <UpdateEmployerPhoneNumber employer={employer} />
                   ) : (
                     <p>{employer.phoneNumber}</p>
                   )}
@@ -177,7 +177,7 @@ export default function EmployerInfo() {
                 </Table.Cell>
                 <Table.Cell textAlign="center">
                   {updateProcess === "updateWebAdress" ? (
-                    <UpdateEmployerWebAdress />
+                    <UpdateEmployerWebAdress employer={employer} />
                   ) : (
                     <p>{employer.webAdress}</p>
                   )}

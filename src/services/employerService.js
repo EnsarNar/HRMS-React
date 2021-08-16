@@ -16,4 +16,10 @@ export default class EmployerService {
     updateEmployerPassword(id, password, passwordRepeat) {
         return axios.put(`http://localhost:8080/api/employers/updatePassword?id=${id}&password=${password}3&passwordRepeat=${passwordRepeat}`)
     };
+    updateEmployerPhoneNUumber(id, phoneNumber) {
+        return axios.put(`http://localhost:8080/api/employers/updatePhone?id=${id}&phone=${phoneNumber}`)
+    };
+    updateEmployerWebAdress(id, phoneNumber) {
+        return axios.put(`http://localhost:8080/api/employers/updateWebAdress?id=${id}&webAdress=${phoneNumber}`);
+    };
 };

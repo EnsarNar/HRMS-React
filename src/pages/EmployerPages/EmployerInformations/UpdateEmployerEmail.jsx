@@ -7,12 +7,7 @@ import EmployerService from "../../../services/employerService";
 import { toast } from "react-toastify";
 export default function UpdateEmployerEmail({ employer }) {
   const initialValues = {
-    email: employer.email,
-    companyName: employer.companyName,
-    password: employer.password,
-    password_repeat: employer.password_repeat,
-    phoneNumber: employer.phoneNumber,
-    webAdress: employer.webAdress,
+    email: "",
     id: employer.id,
   };
 
@@ -20,17 +15,12 @@ export default function UpdateEmployerEmail({ employer }) {
     email: Yup.string()
       .email("Lütfen email formatında email giriniz")
       .required("Bu kısım boş geçilemez"),
-    companyName: Yup.string().required("Bu kısım boş geçilemez"),
-    password: Yup.string().required("Bu kısım boş geçilemez"),
-    password_repeat: Yup.string().required("Bu kısım boş geçilemez"),
-    phoneNumber: Yup.string().required("Bu kısım boş geçilemez"),
-    webAdress: Yup.string().required("Bu kısım boş geçilemez"),
     id: Yup.number().required("Bu kısım boş geçilemez"),
   });
   let updateEmail = (values) => {
     let employerService = new EmployerService();
     employerService
-      .updatEmployer(values)
+      .updateEmployerEmail(values.email, values.id)
       .then((result) => toast.success(result.data.message))
       .catch((err) => console.log(err.message));
   };
@@ -40,8 +30,8 @@ export default function UpdateEmployerEmail({ employer }) {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {
-          updateEmail(values);
           console.log(values);
+          updateEmail(values);
         }}
       >
         <Form className="ui form">

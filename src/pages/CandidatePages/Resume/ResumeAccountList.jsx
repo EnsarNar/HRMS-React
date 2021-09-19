@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ResumeAccountService from "../../../services/resumeAccountService";
-import {
-  Grid,
-  Segment,
-  Label,
-  Divider,
-  Icon,
-  Popup,
-  Button,
-  Container,
-} from "semantic-ui-react";
+import { Grid, Divider, Icon, Button, Container } from "semantic-ui-react";
 
 import UpdateResumeAccountModal from "./update/UpdateResumeAccountModal";
 export default function ResumeAccountList({ id }) {

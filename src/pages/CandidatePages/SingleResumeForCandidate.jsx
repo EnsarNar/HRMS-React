@@ -8,7 +8,6 @@ import AddResumeEducationModal from "./Resume/add/AddResumeEducationModal";
 import AddResumeLanguageModal from "./Resume/add/AddResumeLanguageModal";
 import AddResumeExperienceModal from "./Resume/add/AddResumeExperienceModal";
 import AddResumeAccountModal from "./Resume/add/AddResumeAccountModal";
-import UpdateResumeCoverLetter from "./Resume/update/UpdateResumeCoverLetter";
 import ResumeCoverLetterList from "./Resume/ResumeCoverLetterList";
 import {
   Button,
@@ -18,7 +17,6 @@ import {
   Grid,
   Icon,
   ModalContent,
-  Container,
   Divider,
 } from "semantic-ui-react";
 import ResumeTechnologyList from "./Resume/ResumeTechnologyList";

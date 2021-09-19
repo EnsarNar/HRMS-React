@@ -20,7 +20,7 @@ export default function EmployerInfo() {
   useEffect(() => {
     let employerService = new EmployerService();
     employerService
-      .getEmployerById(30)
+      .getEmployerById(31) // İleride JWT ile düzeltilecek
       .then((result) => setEmployers(result.data.data))
       .catch((err) => console.log(err.message));
   }, []);

@@ -8,5 +8,8 @@ export default class EmployerUpdateSchema {
     getAllSchemas() {
         return axios.get("http://localhost:8080/api/employerUpdateSchemas/getAll");
     }
+    removeSchema(id) {
+        return axios.post(`http://localhost:8080/api/employerUpdateSchemas/remove?id=${id}`);
+    }
 
 }

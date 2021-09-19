@@ -1,24 +1,35 @@
 
-import { ADD_NEW_SCHEMA, REMOVE_SCHEMA } from "../actions/employerUpdateActions";
+import { ADD_NEW_SCHEMA_TRUE, ADD_NEW_SCHEMA_FALSE, REMOVE_SCHEMA_TRUE, REMOVE_SCHEMA_FALSE } from "../actions/employerUpdateActions";
 import { employerUpdateSchemas } from "../initialValues/employerUpdateSchemas";
 
 const initialState = {
     employerUpdateSchemas: employerUpdateSchemas
 }
 
-export default function employerUpdateReduver(state = initialState, { type, payload }) {
+export default function employerUpdateReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case ADD_NEW_SCHEMA:
+        case ADD_NEW_SCHEMA_TRUE:
             return {
                 ...state,
                 employerUpdateSchemas: [...employerUpdateSchemas, { updateValue: payload }]
 
             }
-
-        case REMOVE_SCHEMA:
+        case ADD_NEW_SCHEMA_FALSE:
             return {
                 ...state,
-                employerUpdateSchemas: state.employerUpdateSchemas.filter(f => f.updateValue.id !== payload.id)
+                message: payload
+            }
+
+        case REMOVE_SCHEMA_TRUE:
+            return {
+                ...state,
+                employerUpdateSchemas: [...state.employerUpdateSchemas.filter(schema => schema.id !== payload)]
+            }
+
+        case REMOVE_SCHEMA_FALSE:
+            return {
+                ...state,
+                message: payload
             }
         default:
             return state;

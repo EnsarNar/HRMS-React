@@ -1,25 +1,23 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { Button, Icon } from "semantic-ui-react";
 import KodlamaIoInput from "../../../utilities/customFormControls/KodlamaIoInput";
-import EmployerService from "../../../services/employerService";
+import { addSchema } from "../../../store/actions/employerUpdateActions";
 import { toast } from "react-toastify";
 export default function UpdateEmployerWebAdress({ employer }) {
+  const dispatch = useDispatch();
   const initialValues = {
     webAdress: "",
-    id: employer.id,
+    employerId: employer.id,
   };
   const schema = Yup.object({
     webAdress: Yup.string().required("Bu kısım boş geçilemez"),
-    id: Yup.number().required("Bu kısım boş geçilemez"),
+    employerId: Yup.number().required("Bu kısım boş geçilemez"),
   });
   let updateWebAdress = (values) => {
-    let employerService = new EmployerService();
-    employerService
-      .updateEmployerWebAdress(values.id, values.webAdress)
-      .then((result) => toast.success("İşlem Başarılı"))
-      .catch((err) => console.log(err.message));
+    dispatch(addSchema(values));
   };
   return (
     <div>

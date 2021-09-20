@@ -1,28 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Icon } from "semantic-ui-react";
 import KodlamaIoInput from "../../../utilities/customFormControls/KodlamaIoInput";
-import EmployerService from "../../../services/employerService";
+import { addSchema } from "../../../store/actions/employerUpdateActions";
 import { toast } from "react-toastify";
 
 export default function UpdateEmployerPassword({ employer }) {
+  const dispatch = useDispatch();
+
   const initialValues = {
     password: "",
     passwordRepeat: "",
-    id: employer.id,
+    employerId: employer.id,
   };
   const schema = Yup.object({
     password: Yup.string().required("Bu kısım boş geçilemez"),
     passwordRepeat: Yup.string().required("Bu kısım boş geçilemez"),
-    id: Yup.number().required("Bu kısım boş geçilemez"),
+    employerId: Yup.number().required("Bu kısım boş geçilemez"),
   });
   let updatePassword = (values) => {
-    let employerService = new EmployerService();
-    employerService
-      .updateEmployerPassword(values.id, values.password, values.passwordRepeat)
-      .then((result) => toast.success("İşlem Başarılı"))
-      .catch((err) => console.log(err.message));
+    dispatch(addSchema(values));
   };
 
   return (

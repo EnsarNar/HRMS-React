@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Icon } from "semantic-ui-react";
 import KodlamaIoInput from "../../../utilities/customFormControls/KodlamaIoInput";
-import EmployerUpdateSchema from "../../../services/employerUpdateSchemaService";
+import { addSchema } from "../../../store/actions/employerUpdateActions";
 import { toast } from "react-toastify";
 export default function UpdateEmployerEmail({ employer }) {
+  const dispatch = useDispatch();
+  const employerUpdateSchemas = useSelector(
+    (state) => state.schemas.employerUpdateSchemas
+  );
+
   const initialValues = {
     email: "",
-    id: employer.id,
+    employerId: employer.id,
   };
 
   const schema = Yup.object({
     email: Yup.string()
       .email("Lütfen email formatında email giriniz")
       .required("Bu kısım boş geçilemez"),
-    id: Yup.number().required("Bu kısım boş geçilemez"),
+    employerId: Yup.number().required("Bu kısım boş geçilemez"),
   });
 
-  let updateEmail = (values) => {
-    let employerUpdateSchemaService = new EmployerUpdateSchema();
-    employerUpdateSchemaService
-      .addSchema(values.email, values.id)
-      .then((result) => toast.success(result.data.message))
-      .catch((err) => console.log(err.message));
+  let handleUpdate = (shema) => {
+    dispatch(addSchema(shema));
   };
   return (
     <div>
@@ -32,7 +34,8 @@ export default function UpdateEmployerEmail({ employer }) {
         validationSchema={schema}
         onSubmit={(values) => {
           console.log(values);
-          //updateEmail(values);
+
+          handleUpdate(values);
         }}
       >
         <Form className="ui form">

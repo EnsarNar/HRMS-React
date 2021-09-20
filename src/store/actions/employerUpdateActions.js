@@ -9,40 +9,37 @@ export const REMOVE_SCHEMA_FALSE = "REMOVE_SCHEMA_FALSE";
 let employerUpdateSchemaService = new EmployerUpdateSchemaService();
 
 export const addSchema = (schema) => async (dispatch) => {
-
-    await employerUpdateSchemaService
+    await employerUpdateSchemaService;
+    employerUpdateSchemaService
         .addSchema(schema)
-        .then(result =>
+        .then(result => {
             dispatch({
                 type: ADD_NEW_SCHEMA_TRUE,
-                payload: result.data.data,
+                payload: schema
             })
-        )
-        .catch(err =>
+        })
+        .catch(err => {
             dispatch({
                 type: ADD_NEW_SCHEMA_FALSE,
-                payload: "An  error occured.",
-            }))
+                payload: "an error occured"
+            })
+        })
+}
 
-};
 export const removeSchema = (schemaId) => async (dispatch) => {
 
-    await employerUpdateSchemaService
-        .removeSchema(schemaId)
-        .then(result =>
-            dispatch({
-                type: REMOVE_SCHEMA_TRUE,
-                payload: schemaId,
-            })
-        )
-        .catch(err =>
-            dispatch({
-                type: REMOVE_SCHEMA_FALSE,
-                payload: "An error occured.",
-            }))
+    // await employerUpdateSchemaService
+    //     .removeSchema(schemaId)
+    //     .then(result =>
+    //         dispatch({
+    //             type: REMOVE_SCHEMA_TRUE,
+    //             payload: schemaId,
+    //         })
+    //     )
+    //     .catch(err =>
+    //         dispatch({
+    //             type: REMOVE_SCHEMA_FALSE,
+    //             payload: "An error occured.",
+    //         }))
 };
-// export const removeSchema = () => async(dispatch) =>{
 
-//     await employerUpdateSchemaService
-//     .removeSchema
-// },
